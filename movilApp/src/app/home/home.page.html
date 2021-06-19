@@ -1,7 +1,12 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+    
+    <ion-buttons slot="start">
+      <ion-menu-button (click)= "openMenu()" autoHide="false"></ion-menu-button>
+    </ion-buttons>
+
     <ion-title>
-      Blank
+      Municipalidad Mixco
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,12 +14,14 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">Login</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <strong>¿Quieres saber mas sobre nosotros?</strong>
+    <p>Trabajando por nuestra ciudad <a target="_blank" rel="noopener noreferrer" href="https://www.munimixco.gob.gt/">MuniMixco</a></p>
   </div>
+
+  <img src="https://www.munimixco.gob.gt/wp-content/uploads/2016/01/1-LOGO-MIXCO.jpg" alt="imagen fuera de servicio">
 </ion-content>
