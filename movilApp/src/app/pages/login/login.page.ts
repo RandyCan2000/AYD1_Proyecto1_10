@@ -7,9 +7,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginPage implements OnInit {
 
+  credenciales:any = {
+    usuario:"",
+    password:""
+  }
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  btnLogin(){
+    if(this.credenciales.usuario != "" && this.credenciales.password != ""){
+      window.alert(this.credenciales.usuario);
+    }else{
+      alert("debe llenar todos los campos de texto")
+    }
   }
 
 }
