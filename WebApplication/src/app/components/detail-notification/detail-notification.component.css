@@ -73,7 +73,6 @@ mat-card-content{
 }
 .ima img{
     height: 300px;
-    resize: none;
 }
 .close{
     color: white;

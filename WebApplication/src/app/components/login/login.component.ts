@@ -16,7 +16,8 @@ export class LoginComponent implements OnInit {
   }
 
   public Loguearse(){
-    this.route.navigate(['home'])
+    this.route.navigate(['perfil'])
+    //sesion storage USR_MUN
   }
 
 }

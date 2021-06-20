@@ -4,6 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DetailNotificationComponent } from '../detail-notification/detail-notification.component';
+import { ServicesService } from 'src/app/services/services.service';
 
 @Component({
   selector: 'app-reportes',
@@ -43,7 +44,9 @@ export class ReportesComponent implements OnInit, AfterViewInit {
 
   public SelectOptionRadioButton:string = "";
 
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog,private service:ServicesService) {
+    //this.service.Verification()
+  }
 
   ngOnInit(): void {
   }

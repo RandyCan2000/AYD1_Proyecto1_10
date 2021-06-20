@@ -10,6 +10,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { ReportesComponent } from './components/reportes/reportes.component';
 import { FormsModule } from '@angular/forms';
 import { DetailNotificationComponent } from './components/detail-notification/detail-notification.component';
+import { HttpClientModule } from '@angular/common/http';
+import { PerfilComponent } from './components/perfil/perfil.component';
 
 @NgModule({
   declarations: [
@@ -17,14 +19,16 @@ import { DetailNotificationComponent } from './components/detail-notification/de
     LoginComponent,
     SidebarComponent,
     ReportesComponent,
-    DetailNotificationComponent
+    DetailNotificationComponent,
+    PerfilComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   entryComponents:[
     DetailNotificationComponent

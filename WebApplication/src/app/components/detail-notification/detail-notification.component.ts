@@ -1,5 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ServicesService } from 'src/app/services/services.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-detail-notification',
@@ -10,7 +12,7 @@ export class DetailNotificationComponent implements OnInit {
 
   constructor(
     private dialogRef: MatDialogRef<DetailNotificationComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
     ) { }
 
   public Images:string[]=[
@@ -35,5 +37,23 @@ export class DetailNotificationComponent implements OnInit {
 
   NextImage(){
     this.numberImage = this.numberImage+1 === this.Images.length? 0 : this.numberImage +1 ;
+  }
+
+  async ResponseNotification(){
+    const { value: text } = await Swal.fire({
+      title: 'Escriba su respuesta',
+      input: 'textarea',
+      inputLabel: 'Mensaje',
+      showCancelButton: true,
+      inputValidator: (value) => {
+        if (!value) {
+          return 'El mensaje no puede estar en blanco'
+        }
+      }
+    })
+    //Send Menssage
+    if (text) {
+      Swal.fire(`${text}`)
+    }
   }
 }
