@@ -8,7 +8,7 @@ import { AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild } fr
 export class SidebarComponent implements OnInit, AfterViewInit{
 
   @ViewChild("btn_menu") btn_menu :any;
-  constructor(private render:Renderer2) { }
+  constructor() { }
 
   ngOnInit(): void {
     

@@ -1,0 +1,66 @@
+<mat-card>
+    <mat-card-title>
+        Notificación
+        <mat-icon style="position: absolute;right: 0%;" (click)="Close()" class="close">close</mat-icon>
+    </mat-card-title>
+    <mat-card-content>
+        <form class="example-form">
+            <mat-form-field class="half_left">
+                <mat-label>No. Notificacion</mat-label>
+                <input matInput>
+            </mat-form-field>
+            <br>
+            <mat-form-field class="half_left">
+                <mat-label>Fecha Notificacion</mat-label>
+                <input matInput>
+            </mat-form-field>
+            <mat-form-field class="half_right">
+                <mat-label>Hora Notificacion</mat-label>
+                <input matInput>
+            </mat-form-field>
+            <br>
+            <mat-form-field class="half_left">
+                <mat-label>Fecha Problema</mat-label>
+                <input matInput>
+            </mat-form-field>
+            <mat-form-field class="half_right">
+                <mat-label>Hora Problema</mat-label>
+                <input matInput>
+            </mat-form-field>
+            <mat-form-field class="textArea">
+                <mat-label>Descripción</mat-label>
+                <textarea matInput placeholder="Ex. Queja de delincuencia" rows="7"></textarea>
+            </mat-form-field>
+            <mat-label>Estado</mat-label>
+            <br> <br>
+            <mat-radio-group aria-label="Select an option">
+                <mat-radio-button value="1">Sin Revisar</mat-radio-button>
+                <mat-radio-button value="2">Revisada</mat-radio-button>
+                <mat-radio-button value="3">Notificada</mat-radio-button>
+                <mat-radio-button value="4">Solucionada</mat-radio-button>
+            </mat-radio-group>
+            
+        </form>
+        <div class="images">
+            <div class="arrow_left">
+                <div (click)="PreviewImage()">
+                    <mat-icon >arrow_back_ios</mat-icon>
+                </div>
+            </div>
+            <div class="arrow_right">
+                <div (click)="NextImage()">
+                    <mat-icon>arrow_forward_ios</mat-icon>
+                </div>
+            </div>
+            <div class="ima">
+                <img mat-card-image src="{{Images[numberImage]}}">
+            </div>
+        </div>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button color="primary">Responder</button>
+    </mat-card-actions>
+    <mat-card-footer>
+        © Grupo 10
+    </mat-card-footer>
+</mat-card>

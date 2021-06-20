@@ -8,19 +8,26 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/MaterialModule';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { ReportesComponent } from './components/reportes/reportes.component';
+import { FormsModule } from '@angular/forms';
+import { DetailNotificationComponent } from './components/detail-notification/detail-notification.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SidebarComponent,
-    ReportesComponent
+    ReportesComponent,
+    DetailNotificationComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule
+  ],
+  entryComponents:[
+    DetailNotificationComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
