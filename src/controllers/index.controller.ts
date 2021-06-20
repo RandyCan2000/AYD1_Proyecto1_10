@@ -15,8 +15,8 @@ export const getUsuarios = async (req:Request,res:Response):Promise<Response>=>{
 }
 /** METODO PARA RETORNAR UN USUARIO DEPENDIENO EL ID */
 export const getUsuarioPorId = async (req:Request,res:Response):Promise<Response> =>{
-    const id = parseInt(req.params.id);
-    const response = await pool.query('SELECT * FROM usuario WHERE idUsuario=$1',[id]);
+    const idUsuario = parseInt(req.params.idUsuario);
+    const response = await pool.query('SELECT * FROM usuario WHERE idUsuario=$1',[idUsuario]);
     return res.json(response.rows);
 }
 /** METODO PARA GUARDAR UN USUARIO*/
