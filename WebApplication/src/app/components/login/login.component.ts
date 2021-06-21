@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
     let user:Empleado[];
     if(this.autentication.user=="admin" &&this.autentication.password=="admin" ){
 
-      sessionStorage.setItem("USR_MUN",JSON.stringify({"usuario":"admin","nombre":"admin","apellido":"admin","tipo":"administrador","fechanacimiento":"99/99/9999"}))
+      sessionStorage.setItem("USR_MUN",JSON.stringify({"usuario":"admin","nombre":"admin","apellido":"admin","tipo":"administrador","fechanacimiento":"01/01/2021"}))
      
       this.SuccesMessage("Administrador")
        this.route.navigate(['perfil'])

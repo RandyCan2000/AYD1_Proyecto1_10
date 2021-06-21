@@ -18,12 +18,16 @@ export class SidebarComponent implements OnInit, AfterViewInit{
   ngOnInit(): void {
     let user1:any
     user1 = JSON.parse(sessionStorage.getItem("USR_MUN"));
+    try {
     
     if(user1.tipo=="administrador"){
       document.getElementById("element").style.display = "block";
     }else{
       document.getElementById("element").style.display = "none";
     }
+    } catch (error) {
+    }
+   
   }
   ngAfterViewInit():void{
     const user = sessionStorage.getItem("userMun");
