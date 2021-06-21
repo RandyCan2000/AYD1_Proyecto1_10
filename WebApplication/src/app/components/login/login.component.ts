@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private route:Router,private Service:ServicesService) {
     if(sessionStorage.getItem("USR_MUN")){
+      window.location.reload()
       this.route.navigate(['perfil'])
     }
   }
@@ -38,8 +39,9 @@ export class LoginComponent implements OnInit {
     if(this.autentication.user=="admin" &&this.autentication.password=="admin" ){
 
       sessionStorage.setItem("USR_MUN",JSON.stringify({"usuario":"admin","nombre":"admin","apellido":"admin","tipo":"administrador","fechanacimiento":"99/99/9999"}))
-       this.SuccesMessage("Administrador")
-      this.route.navigate(['perfil'])
+     
+      this.SuccesMessage("Administrador")
+       this.route.navigate(['perfil'])
     }else{
       
   

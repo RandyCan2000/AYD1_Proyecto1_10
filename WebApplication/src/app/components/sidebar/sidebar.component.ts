@@ -9,10 +9,21 @@ import { Router } from '@angular/router';
 export class SidebarComponent implements OnInit, AfterViewInit{
 
   @ViewChild("btn_menu") btn_menu :any;
-  constructor(private route:Router) { }
+  constructor(private route:Router) { 
+
+  
+  }
+
 
   ngOnInit(): void {
+    let user1:any
+    user1 = JSON.parse(sessionStorage.getItem("USR_MUN"));
     
+    if(user1.tipo=="administrador"){
+      document.getElementById("element").style.display = "block";
+    }else{
+      document.getElementById("element").style.display = "none";
+    }
   }
   ngAfterViewInit():void{
     const user = sessionStorage.getItem("userMun");
