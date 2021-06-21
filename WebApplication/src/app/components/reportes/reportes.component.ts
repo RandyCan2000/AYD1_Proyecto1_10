@@ -31,14 +31,16 @@ export class ReportesComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(){
-    
+    setInterval(() => {
+      this.ngAfterViewInit(); 
+      }, 3000);
   }
 
   async ngAfterViewInit() {
     await this.service.GetAllReportes().then(
       result=>{
         this.ELEMENT_DATA = result
-        console.log(result);
+        
         
       }
     )

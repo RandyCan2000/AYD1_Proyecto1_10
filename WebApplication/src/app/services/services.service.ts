@@ -52,5 +52,11 @@ export class ServicesService {
   public RegistrarEmpleado(body:any):any{
     return this.http.post<string[]>(`${this.API}/empleado`,body).toPromise()
   }
+  public EnviarMensaje(body:any):any{
+    return this.http.post<string[]>(`${this.API}/mensaje`,body).toPromise()
+  }
 
+  public ActualizarEstado(body:any):any{
+    return this.http.put<string[]>(`${this.API}/reporteActualizar`,body).toPromise()
+  }
 }

@@ -34,7 +34,7 @@ export class DetailNotificationComponent implements OnInit {
   ];  
   public numberImage:number=0;
 
-  public ObjectView:any={
+  ObjectView:any={
     idnotificacion:0,
     fechanotificaion:"",
     horanotificacion:"",
@@ -47,6 +47,8 @@ export class DetailNotificationComponent implements OnInit {
   }
 
   async ngOnInit() {
+
+    
     let id_vecino = 0;
     await this.service.GetOneReport(this.data.id).then(
       result=>{
@@ -76,6 +78,7 @@ export class DetailNotificationComponent implements OnInit {
 
   Close(): void {
     this.dialogRef.close();
+    
   }
 
   PreviewImage(){
@@ -95,12 +98,49 @@ export class DetailNotificationComponent implements OnInit {
       inputValidator: (value) => {
         if (!value) {
           return 'El mensaje no puede estar en blanco'
+        }else{
+
         }
       }
     })
     //Send Menssage
-    if (text) {
-      Swal.fire(`${text}`)
+    let user1:any
+    user1 = JSON.parse(sessionStorage.getItem("USR_MUN"));
+    await this.service.EnviarMensaje({"descripcion":text,"idReporte":this.ObjectView.idnotificacion,"idEmpleado":user1.idempleado}).then(
+      result=>{
+        this.SuccesMessage("Mensaje Enviado")
+      }
+    )
+
+
+
+    
+  }
+  private message = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
     }
+  })
+  private SuccesMessage(name:string){
+    this.message.fire({
+      icon:'success',
+      title:`${name}`
+    })
+  }
+
+
+  async ActualizarEstado(){
+    await this.service.ActualizarEstado({"idReporte":this.ObjectView.idnotificacion,"estado":this.ObjectView.estado}).then(
+      result=>{
+        this.SuccesMessage(result)
+      }
+    )
+
   }
 }
