@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DetailNotificationComponent } from '../detail-notification/detail-notification.component';
 import { ServicesService } from 'src/app/services/services.service';
+import { Reporte } from 'src/app/models/Reporte';
 
 @Component({
   selector: 'app-reportes',
@@ -16,42 +17,32 @@ export class ReportesComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;//Crear las paginas
   @ViewChild(MatSort) sort: MatSort;//Para ordenar
 
-  ELEMENT_DATA: any[] = [
-    {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-    {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-    {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-    {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-    {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-    {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-    {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-    {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-    {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-    {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-    {position: 11, name: 'Sodium', weight: 22.9897, symbol: 'Na'},
-    {position: 12, name: 'Magnesium', weight: 24.305, symbol: 'Mg'},
-    {position: 13, name: 'Aluminum', weight: 26.9815, symbol: 'Al'},
-    {position: 14, name: 'Silicon', weight: 28.0855, symbol: 'Si'},
-    {position: 15, name: 'Phosphorus', weight: 30.9738, symbol: 'P'},
-    {position: 16, name: 'Sulfur', weight: 32.065, symbol: 'S'},
-    {position: 17, name: 'Chlorine', weight: 35.453, symbol: 'Cl'},
-    {position: 18, name: 'Argon', weight: 39.948, symbol: 'Ar'},
-    {position: 19, name: 'Potassium', weight: 39.0983, symbol: 'K'},
-    {position: 20, name: 'Calcium', weight: 40.078, symbol: 'Ca'},
-  ];
+  ELEMENT_DATA: Reporte[] = [];
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  displayedColumns: string[] = ['idreporte', 'zona', 'fechareporte', 'horareporte', 'estado', 'tipoproblema', 'usuario'];
   dataSource = new MatTableDataSource<any>(this.ELEMENT_DATA);
 
   public SelectOptionRadioButton:string = "";
 
+  private filterpredicate:any = this.dataSource.filterPredicate
+
   constructor(private dialog: MatDialog,private service:ServicesService) {
-    //this.service.Verification()
+    this.service.Verification()
   }
 
-  ngOnInit(): void {
+  ngOnInit(){
+    
   }
 
-  ngAfterViewInit() {
+  async ngAfterViewInit() {
+    await this.service.GetAllReportes().then(
+      result=>{
+        this.ELEMENT_DATA = result
+        console.log(result);
+        
+      }
+    )
+    this.dataSource = new MatTableDataSource<any>(this.ELEMENT_DATA);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
@@ -62,14 +53,63 @@ export class ReportesComponent implements OnInit, AfterViewInit {
 
   selectRadioButton(){
     
+    switch (this.SelectOptionRadioButton) {
+      case '1':
+        this.dataSource.filterPredicate = function(data:any, filter: any): boolean {
+          return data.idreporte == filter;
+        };
+        break;
+      case '2':
+        this.dataSource.filterPredicate = function(data:any, filter: any): boolean {
+          return data.zona.toLowerCase().includes(filter);
+        };
+        break;
+      case '3':
+        this.dataSource.filterPredicate = function(data:any, filter: any): boolean {
+          return data.fechareporte.toLowerCase().includes(filter);
+        };
+        break;
+      case '4':
+        this.dataSource.filterPredicate = function(data:any, filter: any): boolean {
+          return data.horareporte.toLowerCase().includes(filter);
+        };
+        break;  
+      case '5':
+        this.dataSource.filterPredicate = function(data:any, filter: any): boolean {
+          if(filter.trim().toLowerCase().includes('sin revisar')){
+            return data.horareporte.toLowerCase().includes('0')
+          }
+          else if(filter.trim().toLowerCase().includes('revisado')){
+            return data.horareporte.toLowerCase().includes('0')
+          }
+          else if(filter.trim().toLowerCase().includes('notificado')){
+            return data.horareporte.toLowerCase().includes('0')
+          }
+          else if(filter.trim().toLowerCase().includes('solucionado')){
+            return data.horareporte.toLowerCase().includes('0')
+          }
+        };
+        break;
+      case '6':
+        this.dataSource.filterPredicate = function(data:any, filter: any): boolean {
+          return data.nombre.toLowerCase().includes(filter);
+        };
+        break;
+      case '7':
+        this.dataSource.filterPredicate = function(data:any, filter: any): boolean {
+          return data.nombreusuario.toLowerCase().includes(filter);
+        };
+        break;
+      case '8':
+        this.dataSource.filterPredicate = this.filterpredicate;
+        break;
+    }
   }
 
   SelectData(Notificacion:any){
-    console.log(Notificacion);
     this.dialog.open(DetailNotificationComponent, {
       data: {
-        width: '500px',
-        animal: 'lion'
+        id: Notificacion.idreporte
       }
     });
   }

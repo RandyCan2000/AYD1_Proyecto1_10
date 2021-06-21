@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { TipoProblema } from 'src/app/models/TipoProblema';
 import { ServicesService } from 'src/app/services/services.service';
 import Swal from 'sweetalert2';
 
@@ -13,7 +14,16 @@ export class DetailNotificationComponent implements OnInit {
   constructor(
     private dialogRef: MatDialogRef<DetailNotificationComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    ) { }
+    private service:ServicesService
+    ) {
+      this.service.GetTipoProblemas().then(
+        result=>{
+          this.TiposProblema = result
+        }
+      )
+    }
+
+  public TiposProblema:TipoProblema[]=[]
 
   public Images:string[]=[
     "https://images.unsplash.com/photo-1598128558393-70ff21433be0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=422&q=80",
@@ -24,7 +34,44 @@ export class DetailNotificationComponent implements OnInit {
   ];  
   public numberImage:number=0;
 
-  ngOnInit(): void {
+  public ObjectView:any={
+    idnotificacion:0,
+    fechanotificaion:"",
+    horanotificacion:"",
+    fechaproblema:"",
+    horaproblema:"",
+    nombrevecino:"",
+    descripcion:"",
+    estado:"",
+    tipoproblema:""
+  }
+
+  async ngOnInit() {
+    let id_vecino = 0;
+    await this.service.GetOneReport(this.data.id).then(
+      result=>{
+        this.ObjectView.idnotificacion=result[0].idreporte
+        this.ObjectView.fechanotificaion=result[0].fechareporte
+        this.ObjectView.horanotificacion=result[0].horareporte
+        this.ObjectView.fechaproblema=result[0].fechaproblema
+        this.ObjectView.horaproblema=result[0].horaproblema
+        this.ObjectView.descripcion=result[0].descripcion
+        this.ObjectView.estado=result[0].estado
+        this.ObjectView.tipoproblema=result[0].idtipoproblema
+        id_vecino = result[0].idusuario
+      }
+    )
+    await this.service.GetOneUserVecino(String(id_vecino)).then(
+      result=>{
+        this.ObjectView.nombrevecino = `${result[0].nombre} ${result[0].apellido}`
+      }
+    )
+    await this.service.GetImageOfReport(String(this.ObjectView.idnotificacion)).then(
+      result=>{
+        this.Images = result
+        this.numberImage = 0
+      }
+    )
   }
 
   Close(): void {

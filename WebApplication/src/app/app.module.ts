@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { DetailNotificationComponent } from './components/detail-notification/detail-notification.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PerfilComponent } from './components/perfil/perfil.component';
+import { ServicesService } from './services/services.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,9 @@ import { PerfilComponent } from './components/perfil/perfil.component';
   entryComponents:[
     DetailNotificationComponent
   ],
-  providers: [],
+  providers: [
+    ServicesService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

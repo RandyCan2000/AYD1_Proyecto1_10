@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { Empleado } from 'src/app/models/Empleado';
+import { ServicesService } from 'src/app/services/services.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -8,16 +11,57 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private route:Router) {
-    
+  autentication = { user:"",password:""}
+  private message = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
+
+  constructor(private route:Router,private Service:ServicesService) {
+    if(sessionStorage.getItem("USR_MUN")){
+      this.route.navigate(['perfil'])
+    }
   }
 
   ngOnInit(): void {
   }
 
-  public Loguearse(){
-    this.route.navigate(['perfil'])
+  public async Loguearse(){
+    let user:Empleado[];
+    await this.Service.Loguin(this.autentication.user,this.autentication.password).then(
+      result=>{
+        user = result;
+      }
+    )
+    if(user.length === 0){
+      this.ErrorMessage()
+    }else{
+      sessionStorage.setItem("USR_MUN",JSON.stringify(user[0]))
+      this.SuccesMessage(user[0].nombre)
+      this.route.navigate(['perfil'])
+    }
     //sesion storage USR_MUN
+  }
+
+  private ErrorMessage(){
+    this.message.fire({
+      icon:'error',
+      title:"Error Usuario no Encontrado"
+    })
+  }
+
+  private SuccesMessage(name:string){
+    this.message.fire({
+      icon:'success',
+      title:`Bienvenido ${name}`
+    })
   }
 
 }

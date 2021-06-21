@@ -11,6 +11,9 @@ table {
 mat-form-field{
   
 }
+mat-radio-button{
+  padding-right: 10px;
+}
 .filter:hover{
   cursor: pointer;
 }
@@ -27,3 +30,4 @@ td mat-icon:hover{
 -webkit-box-shadow:0px 0px 13px 1px #b3b3b3;
   cursor:pointer;
 }
+

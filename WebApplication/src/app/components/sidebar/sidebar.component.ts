@@ -23,7 +23,7 @@ export class SidebarComponent implements OnInit, AfterViewInit{
 
   logout(){
     this.route.navigate(['login'])
-    this.btn_menu._disabled=true;
+    //this.btn_menu._disabled=true;
     sessionStorage.removeItem("USR_MUN")
   }
 
