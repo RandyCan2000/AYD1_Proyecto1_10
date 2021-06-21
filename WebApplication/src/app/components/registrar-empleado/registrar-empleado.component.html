@@ -14,16 +14,12 @@
                 </mat-form-field>
                 <mat-form-field class="left">
                     <mat-label>Telefono</mat-label>
-                    <input matInput type="number" [(ngModel)]="User.edad" name="edad">
+                    <input matInput type="number" [(ngModel)]="User.telefono" name="edad">
                 </mat-form-field>
                 <mat-form-field class="full">
                     <mat-label>Correo</mat-label>
                     <input matInput type="email" [(ngModel)]="User.correo" name="correo">
                 </mat-form-field>
-
-
-             
-
 
                 <mat-form-field class="left">
                     <mat-label>Edad</mat-label>
@@ -43,7 +39,7 @@
 
                 <mat-form-field class="full">
                     <mat-label>Password</mat-label>
-                    <input matInput type="password" [(ngModel)]="User.usuario" name="usuario">
+                    <input matInput type="password" [(ngModel)]="User.password" name="usuario">
                 </mat-form-field>
                 <br>
              
@@ -51,7 +47,7 @@
         </mat-card-content>
         <mat-card-actions>
             
-            <button mat-raised-button color="primary">Registrar</button>
+            <button mat-raised-button color="primary" (click)="registrar()">Registrar</button>
         </mat-card-actions>
        
     </mat-card>
