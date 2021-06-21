@@ -1,0 +1,33 @@
+table {
+    width: 100%;
+    background: rgba(0,0,0,0.6);
+  }
+  mat-paginator{
+    background: rgba(0,0,0, 0.5);
+  }
+.container{
+  margin-top: 20px;
+}
+mat-form-field{
+  
+}
+mat-radio-button{
+  padding-right: 10px;
+}
+.filter:hover{
+  cursor: pointer;
+}
+.mat-radio-button {
+  margin-left: 13px;
+}
+td mat-icon:hover{
+  cursor: pointer;
+}
+.Item:hover{
+  background: rgb(37, 94, 133);
+  box-shadow:0px 0px 13px 1px #b3b3b3;
+-moz-box-shadow:0px 0px 13px 1px #b3b3b3;
+-webkit-box-shadow:0px 0px 13px 1px #b3b3b3;
+  cursor:pointer;
+}
+
