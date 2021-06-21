@@ -20,12 +20,21 @@
               Perfil
             </p>
           </a>
+
+          <a mat-list-item routerLink="registrar" (click)="snav.toggle()">
+            <p>
+              <mat-icon>person</mat-icon>
+              Registrar
+            </p>
+          </a>
+
           <a mat-list-item (click)="snav.toggle()" (click)="logout()">
             <p>
               <mat-icon>logout</mat-icon>
               Cerrar Sesión
             </p>
           </a>
+
         </mat-nav-list>
       </mat-sidenav>
       <mat-sidenav-content>

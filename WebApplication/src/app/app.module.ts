@@ -13,6 +13,7 @@ import { DetailNotificationComponent } from './components/detail-notification/de
 import { HttpClientModule } from '@angular/common/http';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { ServicesService } from './services/services.service';
+import { RegistrarEmpleadoComponent } from './components/registrar-empleado/registrar-empleado.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ServicesService } from './services/services.service';
     SidebarComponent,
     ReportesComponent,
     DetailNotificationComponent,
-    PerfilComponent
+    PerfilComponent,
+    RegistrarEmpleadoComponent
   ],
   imports: [
     BrowserModule,

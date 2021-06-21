@@ -1,14 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Empleado } from 'src/app/models/Empleado';
 import { ServicesService } from 'src/app/services/services.service';
-
 @Component({
-  selector: 'app-perfil',
-  templateUrl: './perfil.component.html',
-  styleUrls: ['./perfil.component.css']
+  selector: 'app-registrar-empleado',
+  templateUrl: './registrar-empleado.component.html',
+  styleUrls: ['./registrar-empleado.component.css']
 })
-export class PerfilComponent implements OnInit {
-
+export class RegistrarEmpleadoComponent implements OnInit {
   public User:Empleado;
 
   constructor(private service:ServicesService) {
