@@ -1,5 +1,5 @@
 import express from 'express'
-import cors from 'cors';
+const cors = require('cors');
 const app = express();
 
 import indexRoutes from './routes/index'
@@ -15,3 +15,4 @@ app.use(indexRoutes);
 app.listen(app.get('port'),()=>{
     console.log("Server on port",app.get('port'));
 });
+
