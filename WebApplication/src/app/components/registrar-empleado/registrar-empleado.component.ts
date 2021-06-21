@@ -29,7 +29,6 @@ export class RegistrarEmpleadoComponent implements OnInit {
   }
 
   async registrar(){
-    /*
     await this.service.RegistrarEmpleado(this.User).then(
       result=>{
       
@@ -37,8 +36,6 @@ export class RegistrarEmpleadoComponent implements OnInit {
         this.User = {idempleado:null, tipo:"empleado", apellido:"",nombre:"",telefono:null,correo:"",edad:null,fechanacimiento:"",usuario:"",password:""}
       }
     )
-    */
-   console.log(this.User.fechanacimiento)
   }
 
   
