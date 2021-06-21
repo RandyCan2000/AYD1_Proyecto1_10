@@ -1,9 +1,36 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
     <ion-title>reportes</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true">
+
+  <ion-row>
+    <ion-col sizeLg="3" sizeMd="3" sizeXs="6">
+      <ion-card (click) = "btnBaches()" >
+          <img src="https://image.flaticon.com/icons/png/512/2582/2582928.png" alt="">
+        <ion-card-header>
+          <ion-card-subtitle>MuniMixco</ion-card-subtitle>
+          <ion-card-title>Baches en las Calles</ion-card-title>
+        </ion-card-header>
+      </ion-card>
+    </ion-col>
+
+    <ion-col sizeLg="3" sizeMd="3" sizeXs="6">
+      <ion-card (click) = "btnDelincuencia()" >
+          <img src="https://previews.123rf.com/images/pandavector/pandavector1610/pandavector161004771/67670742-icono-de-robo-en-el-estilo-de-dibujos-animados-aislado-en-el-fondo-blanco-delincuencia-ilustraci%C3%B3n-vect.jpg" alt="">
+        <ion-card-header>
+          <ion-card-subtitle>MuniMixco</ion-card-subtitle>
+          <ion-card-title>Actos de delincuencia</ion-card-title>
+        </ion-card-header>
+      </ion-card>
+    </ion-col>
+
+  </ion-row>
+
 
 </ion-content>

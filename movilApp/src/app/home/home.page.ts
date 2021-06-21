@@ -11,7 +11,7 @@ export class HomePage {
   constructor(private menu:MenuController) {}
 
   openMenu(){
-    this.menu.close();
+    this.menu.open();
   }
 
 }

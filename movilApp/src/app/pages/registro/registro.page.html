@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>registro de usuarios</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding ion-text-center" [fullscreen]="true">
+  <div class="logo1">
+    <img src="https://remisiones.munimixco.gob.gt/assets/img/munimixco-logo.png" alt="">
+  </div>
+  <div class="form1">
+    <br><br>
+    <ion-item lines='none'>
+      <ion-input [(ngModel)]="usuario.nombre" placeholder="nombre"></ion-input>
+    </ion-item>
+
+    <ion-item lines='none'>
+      <ion-input [(ngModel)]="usuario.apellido" placeholder="apellido"></ion-input>
+    </ion-item>
+
+    <ion-item lines='none'>
+      <ion-input [(ngModel)]="usuario.telefono" placeholder="telefono"></ion-input>
+    </ion-item>
+
+    <ion-item lines='none'>
+      <ion-input [(ngModel)]="usuario.edad" placeholder="edad" type="number" min= "1"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>fecha nacimiento</ion-label>
+      <ion-datetime [(ngModel)]="usuario.fechaNacimiento" placeholder="fechaNacimiento" displayFormat="DD/MMM/YYYY" value="null" placeholder="seleccionar fecha"></ion-datetime>
+    </ion-item>
+
+    <ion-item lines='none'>
+      <ion-input [(ngModel)]="usuario.correo" placeholder="email: usuario@gmail.com"></ion-input>
+    </ion-item>
+
+    <ion-item lines='none'>
+      <ion-input [(ngModel)]="usuario.usuario" placeholder="usuario"></ion-input>
+    </ion-item>
+
+    <ion-item lines='none'>
+      <ion-input [(ngModel)]="usuario.password" placeholder="contraseña" type="password"></ion-input>
+    </ion-item>
+
+    <ion-item lines='none'>
+      <ion-input [(ngModel)]="confPassword" placeholder="confirmar contraseña" type="password"></ion-input>
+    </ion-item>
+
+    
+    <br>
+    <ion-button expand="block" (click)="btnRegistrar()">registrar</ion-button>
+  </div>
+</ion-content>

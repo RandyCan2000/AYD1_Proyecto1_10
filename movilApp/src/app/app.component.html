@@ -14,11 +14,18 @@
     </ion-header>
     <ion-content>
       <ion-list lines="none" class="menu-items">
-        <ion-item routerLink="/home" ><ion-icon name="home"></ion-icon> Página principal </ion-item>
-        <ion-item><ion-icon name="copy"></ion-icon> Reportes </ion-item>
-        <ion-item routerLink="/login"><ion-icon name="person"></ion-icon>  Login </ion-item>
-        <ion-item><ion-icon name="finger-print"></ion-icon> Registrar </ion-item>
-        <ion-item>Menu Item</ion-item>
+        <ion-menu-toggle>
+          <ion-item routerLink="/home" ><ion-icon name="home"></ion-icon> Página principal </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item routerLink="/reportes"><ion-icon name="copy"></ion-icon> Reportes </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item routerLink="/login"><ion-icon name="person"></ion-icon>  Login </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item routerLink="/registro"><ion-icon name="finger-print"></ion-icon> Registrar </ion-item>
+        </ion-menu-toggle>
       </ion-list>
     </ion-content>
   </ion-menu>

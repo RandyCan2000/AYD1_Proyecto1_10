@@ -19,6 +19,18 @@ const routes: Routes = [
     path: 'reportes',
     loadChildren: () => import('./pages/reportes/reportes.module').then( m => m.ReportesPageModule)
   },
+  {
+    path: 'registro',
+    loadChildren: () => import('./pages/registro/registro.module').then( m => m.RegistroPageModule)
+  },
+  {
+    path: 'baches',
+    loadChildren: () => import('./pages/baches/baches.module').then( m => m.BachesPageModule)
+  },
+  {
+    path: 'delincuencia',
+    loadChildren: () => import('./pages/delincuencia/delincuencia.module').then( m => m.DelincuenciaPageModule)
+  },
 ];
 
 @NgModule({
