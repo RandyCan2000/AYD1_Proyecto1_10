@@ -22,7 +22,13 @@ export class PerfilComponent implements OnInit {
     this.service.Verification()
     this.User = JSON.parse(sessionStorage.getItem("USR_MUN"));
     let spliter = this.User.fechanacimiento.split("/")
+
+    if(spliter.length==1){
+     
+    }else{
     this.User.fechanacimiento = `${spliter[2]}-${spliter[1]}-${spliter[0]}`
+    }
+ 
     }
   }
 

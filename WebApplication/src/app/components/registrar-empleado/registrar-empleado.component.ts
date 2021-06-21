@@ -22,7 +22,7 @@ export class RegistrarEmpleadoComponent implements OnInit {
   })
   constructor(private service:ServicesService) {
     this.service.Verification()
-    this.User = {idempleado:null, tipo:"empleado", apellido:"",nombre:"",telefono:null,correo:"",edad:null,fechanacimiento:"",usuario:"",password:""}
+    this.User = {idempleado:null, tipo:"empleado", apellido:"",nombre:"",telefono:null,correo:"",edad:null,fechanacimiento:"",fechaNacimiento:"",usuario:"",password:""}
     
   }
 
@@ -34,7 +34,7 @@ export class RegistrarEmpleadoComponent implements OnInit {
       result=>{
       
         this.SuccesMessage("Completo")
-        this.User = {idempleado:null, tipo:"empleado", apellido:"",nombre:"",telefono:null,correo:"",edad:null,fechanacimiento:"",usuario:"",password:""}
+        this.User = {idempleado:null, tipo:"empleado", apellido:"",nombre:"",telefono:null,correo:"",edad:null,fechanacimiento:"",fechaNacimiento:"",usuario:"",password:""}
       }
     )
   }
