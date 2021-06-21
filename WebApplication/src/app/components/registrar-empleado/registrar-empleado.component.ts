@@ -21,6 +21,7 @@ export class RegistrarEmpleadoComponent implements OnInit {
     }
   })
   constructor(private service:ServicesService) {
+    this.service.Verification()
     this.User = {idempleado:null, tipo:"empleado", apellido:"",nombre:"",telefono:null,correo:"",edad:null,fechanacimiento:"",usuario:"",password:""}
     
   }
