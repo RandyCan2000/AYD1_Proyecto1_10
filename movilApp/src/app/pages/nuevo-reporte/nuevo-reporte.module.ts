@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { BachesPageRoutingModule } from './baches-routing.module';
+import { NuevoReportePageRoutingModule } from './nuevo-reporte-routing.module';
 
-import { BachesPage } from './baches.page';
+import { NuevoReportePage } from './nuevo-reporte.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    BachesPageRoutingModule
+    NuevoReportePageRoutingModule
   ],
-  declarations: [BachesPage]
+  declarations: [NuevoReportePage]
 })
-export class BachesPageModule {}
+export class NuevoReportePageModule {}

@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { DelincuenciaPageRoutingModule } from './delincuencia-routing.module';
+import { MireportePageRoutingModule } from './mireporte-routing.module';
 
-import { DelincuenciaPage } from './delincuencia.page';
+import { MireportePage } from './mireporte.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    DelincuenciaPageRoutingModule
+    MireportePageRoutingModule
   ],
-  declarations: [DelincuenciaPage]
+  declarations: [MireportePage]
 })
-export class DelincuenciaPageModule {}
+export class MireportePageModule {}

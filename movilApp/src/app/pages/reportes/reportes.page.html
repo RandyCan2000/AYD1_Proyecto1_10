@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-menu-button autoHide="false"></ion-menu-button>
     </ion-buttons>
@@ -11,20 +11,20 @@
 
   <ion-row>
     <ion-col sizeLg="3" sizeMd="3" sizeXs="6">
-      <ion-card (click) = "btnBaches()" >
+      <ion-card routerLink= "/nuevo-reporte/1" >
           <img src="https://image.flaticon.com/icons/png/512/2582/2582928.png" alt="">
         <ion-card-header>
-          <ion-card-subtitle>MuniMixco</ion-card-subtitle>
+          <ion-card-subtitle>crear</ion-card-subtitle>
           <ion-card-title>Baches en las Calles</ion-card-title>
         </ion-card-header>
       </ion-card>
     </ion-col>
 
     <ion-col sizeLg="3" sizeMd="3" sizeXs="6">
-      <ion-card (click) = "btnDelincuencia()" >
+      <ion-card routerLink= "/nuevo-reporte/2" >
           <img src="https://previews.123rf.com/images/pandavector/pandavector1610/pandavector161004771/67670742-icono-de-robo-en-el-estilo-de-dibujos-animados-aislado-en-el-fondo-blanco-delincuencia-ilustraci%C3%B3n-vect.jpg" alt="">
         <ion-card-header>
-          <ion-card-subtitle>MuniMixco</ion-card-subtitle>
+          <ion-card-subtitle>Crear</ion-card-subtitle>
           <ion-card-title>Actos de delincuencia</ion-card-title>
         </ion-card-header>
       </ion-card>
@@ -32,5 +32,25 @@
 
   </ion-row>
 
+  <br>
+  <ion-card-header>
+    <ion-card-title>Lista de reportes realizados</ion-card-title>
+  </ion-card-header>
 
+  <ion-list class="menu-items">
+
+    <div *ngFor = "let r of misreportes">
+      <ion-item routerLink ="/mireporte/{{r.idreporte}}" detail>
+        <ion-label *ngIf = "r.idtipoproblema == 1" ><ion-icon name="car-sport"></ion-icon>baches en la {{r.zona}} </ion-label>
+        <ion-label *ngIf = "r.idtipoproblema == 2" ><ion-icon name="footsteps"></ion-icon>delincuencia en la {{r.zona}} </ion-label>
+      </ion-item>
+    </div>
+
+    
+
+    
+
+   
+  </ion-list>
+  
 </ion-content>

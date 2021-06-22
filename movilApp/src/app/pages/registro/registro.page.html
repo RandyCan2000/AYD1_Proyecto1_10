@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-menu-button autoHide="false"></ion-menu-button>
     </ion-buttons>
@@ -14,44 +14,56 @@
   <div class="form1">
     <br><br>
     <ion-item lines='none'>
-      <ion-input [(ngModel)]="usuario.nombre" placeholder="nombre"></ion-input>
+      <ion-input [(ngModel)]="usuario.nombre" placeholder="nombre" id="1"></ion-input>
     </ion-item>
 
     <ion-item lines='none'>
-      <ion-input [(ngModel)]="usuario.apellido" placeholder="apellido"></ion-input>
+      <ion-input [(ngModel)]="usuario.apellido" placeholder="apellido" id="2"></ion-input>
     </ion-item>
 
     <ion-item lines='none'>
-      <ion-input [(ngModel)]="usuario.telefono" placeholder="telefono"></ion-input>
+      <ion-input [(ngModel)]="usuario.telefono" placeholder="telefono" id="3"></ion-input>
     </ion-item>
 
     <ion-item lines='none'>
-      <ion-input [(ngModel)]="usuario.edad" placeholder="edad" type="number" min= "1"></ion-input>
+      <ion-input [(ngModel)]="usuario.edad" placeholder="edad" type="number" min= "1" id="4"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label>fecha nacimiento</ion-label>
-      <ion-datetime [(ngModel)]="usuario.fechaNacimiento" placeholder="fechaNacimiento" displayFormat="DD/MMM/YYYY" value="null" placeholder="seleccionar fecha"></ion-datetime>
+      <ion-datetime [(ngModel)]="usuario.fechaNacimiento" placeholder="fechaNacimiento" displayFormat="DD/MMM/YYYY" value="null" placeholder="seleccionar fecha" id="5"></ion-datetime>
     </ion-item>
 
     <ion-item lines='none'>
-      <ion-input [(ngModel)]="usuario.correo" placeholder="email: usuario@gmail.com"></ion-input>
+      <ion-input [(ngModel)]="usuario.correo" placeholder="email: usuario@gmail.com" id="6"></ion-input>
     </ion-item>
 
     <ion-item lines='none'>
-      <ion-input [(ngModel)]="usuario.usuario" placeholder="usuario"></ion-input>
+      <ion-input [(ngModel)]="usuario.usuario" placeholder="usuario" id="7"></ion-input>
     </ion-item>
 
     <ion-item lines='none'>
-      <ion-input [(ngModel)]="usuario.password" placeholder="contraseña" type="password"></ion-input>
+      <ion-input [(ngModel)]="usuario.password" placeholder="contraseña" type="password" id="8"></ion-input>
     </ion-item>
 
     <ion-item lines='none'>
-      <ion-input [(ngModel)]="confPassword" placeholder="confirmar contraseña" type="password"></ion-input>
+      <ion-input [(ngModel)]="confPassword" placeholder="confirmar contraseña" type="password" id="9"></ion-input>
     </ion-item>
 
     
     <br>
     <ion-button expand="block" (click)="btnRegistrar()">registrar</ion-button>
+  </div>
+
+  <div *ngIf="flag_campo">
+    <ion-text fill="clear" style="color: red;">
+      es obligatorio llenar todos los campos de texto
+    </ion-text>
+  </div>
+
+  <div *ngIf="flag_pass">
+    <ion-text fill="clear" style="color: red;">
+      las contraseñas no coinciden!
+    </ion-text>
   </div>
 </ion-content>

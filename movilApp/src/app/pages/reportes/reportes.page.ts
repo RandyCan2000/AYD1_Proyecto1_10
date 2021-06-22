@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UsuarioService } from '../../services/usuario.service';
+import { MireportePage } from '../mireporte/mireporte.page';
 
 @Component({
   selector: 'app-reportes',
@@ -8,17 +10,28 @@ import { Router } from '@angular/router';
 })
 export class ReportesPage implements OnInit {
 
-  constructor(private router:Router) { }
+  misreportes:any = null;
+
+  constructor(private router:Router, private services:UsuarioService) { }
 
   ngOnInit() {
+    this.services.reporte_x_id(this.services.getIdUser()).subscribe(
+      (res:any)=>{
+        console.log(res)
+        this.misreportes = res;
+      }
+    );
   }
 
-  btnBaches(){
-    this.router.navigate(['/baches']);
-  }
-
-  btnDelincuencia(){
-    this.router.navigate(['/delincuencia']);
-  }
 
 }
+
+/*
+<div *ngFor = "let r of misreportes">
+      <ion-item (click)="miReporte(r.idreporte)" detail>
+        <ion-label *ngIf = "r.idtipoproblema == 1" ><ion-icon name="car-sport"></ion-icon>baches en la {{r.zona}} </ion-label>
+        <ion-label *ngIf = "r.idtipoproblema == 2" ><ion-icon name="footsteps"></ion-icon>exceso de delincuencia en la {{r.zona}} </ion-label>
+      </ion-item>
+    </div>
+
+  */

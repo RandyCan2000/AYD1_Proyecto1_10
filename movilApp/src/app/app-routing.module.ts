@@ -24,12 +24,12 @@ const routes: Routes = [
     loadChildren: () => import('./pages/registro/registro.module').then( m => m.RegistroPageModule)
   },
   {
-    path: 'baches',
-    loadChildren: () => import('./pages/baches/baches.module').then( m => m.BachesPageModule)
+    path: 'nuevo-reporte/:id',
+    loadChildren: () => import('./pages/nuevo-reporte/nuevo-reporte.module').then( m => m.NuevoReportePageModule)
   },
   {
-    path: 'delincuencia',
-    loadChildren: () => import('./pages/delincuencia/delincuencia.module').then( m => m.DelincuenciaPageModule)
+    path: 'mireporte/:id',
+    loadChildren: () => import('./pages/mireporte/mireporte.module').then( m => m.MireportePageModule)
   },
 ];
 

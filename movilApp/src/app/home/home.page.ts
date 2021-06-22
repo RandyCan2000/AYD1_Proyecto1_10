@@ -14,4 +14,6 @@ export class HomePage {
     this.menu.open();
   }
 
+  
+
 }

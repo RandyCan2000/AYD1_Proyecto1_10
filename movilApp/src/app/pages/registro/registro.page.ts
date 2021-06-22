@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from './../../model/usuario'
 import { Router } from '@angular/router';
+import { UsuarioService } from '../../services/usuario.service';
 
 @Component({
   selector: 'app-registro',
@@ -8,6 +9,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./registro.page.scss'],
 })
 export class RegistroPage implements OnInit {
+  flag_campo:boolean = false;
+  flag_pass:boolean = false;
   usuario:Usuario = {
     nombre:"",
     apellido:"",
@@ -21,12 +24,15 @@ export class RegistroPage implements OnInit {
 
   public confPassword:string = "";
 
-  constructor(private router:Router) { }
+  constructor(private router:Router, private services:UsuarioService) {
+
+   }
 
   ngOnInit() {
   }
 
   btnRegistrar(){
+    
     if(this.usuario.fechaNacimiento == "function Date() { [native code] }" || 
     this.usuario.edad == 0 ||
     this.usuario.nombre == "" ||
@@ -36,16 +42,40 @@ export class RegistroPage implements OnInit {
     this.usuario.usuario == "" ||
     this.usuario.password == "" ||
     this.confPassword == ""){
-      window.alert("debe llenar todos los campos de texto")
+      this.flag_campo = true;
+      this.flag_pass = false;
     }else{
       if(this.confPassword  != this.usuario.password){
-        window.alert("las contraseñas no son correctas!!")
+        this.flag_pass = true;
+        this.flag_campo = false;
       }else{
-        window.alert("registro exitoso")
-        this.router.navigate([ '/login']);
+        
+
+        this.services.registrar(this.usuario).subscribe(
+          (res:any)=> {
+            console.log(res);
+            window.alert("registro exitoso")
+            this.flag_pass = false;
+            this.flag_campo = false;
+            this.resetCampos();
+            this.router.navigate([ '/login']);
+          },
+          err => {
+            console.log(err)
+          }
+        );
 
       }
     }
+  }
+
+
+  resetCampos(){
+    for (let index = 1; index < 10; index++) {
+      (<HTMLInputElement>document.getElementById(''+index)).value = "";
+      
+    }
+    
   }
 
 }

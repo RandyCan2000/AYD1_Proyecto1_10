@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-menu-button autoHide="false"></ion-menu-button>
     </ion-buttons>
@@ -16,17 +16,22 @@
   <div class="form">
     <br><br>
     <ion-item lines='none'>
-      <ion-input [(ngModel)]="credenciales.usuario" placeholder="Usuario"></ion-input>
+      <ion-input [(ngModel)]="credenciales.usuario" placeholder="Usuario" id="user"></ion-input>
     </ion-item>
 
     <ion-item lines='none'>
-      <ion-input [(ngModel)]="credenciales.password" placeholder="Contraseña" type="password"></ion-input>
+      <ion-input [(ngModel)]="credenciales.password" placeholder="Contraseña" type="password" id="pass"></ion-input>
     </ion-item>
 
     <ion-button expand="block" (click)="btnLogin()">acceder</ion-button>
   </div>
 
   <ion-button fill="clear">se le ovidó la Contraseña?</ion-button>
-
+  <br>
+  <div *ngIf="flag_credencial">
+    <ion-text fill="clear" style="color: red;">
+      credenciales incorrectas, vuelva a intentar!!
+    </ion-text>
+  </div>
 
 </ion-content>

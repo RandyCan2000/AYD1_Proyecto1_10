@@ -1,5 +1,5 @@
 <ion-app>
-  
+
   <ion-menu side="start" menuId="first" contentId="main">
     <ion-header>
       <ion-toolbar color="primary">
@@ -7,7 +7,7 @@
         <ion-avatar slot="start">
           <img src="https://cdn3.iconfinder.com/data/icons/avatars-round-flat/33/man5-512.png">
         </ion-avatar>
-        <ion-title>anonimo</ion-title>
+        <ion-title> {{usuario}} </ion-title>
         <br>
         <br>
       </ion-toolbar>
@@ -15,17 +15,33 @@
     <ion-content>
       <ion-list lines="none" class="menu-items">
         <ion-menu-toggle>
-          <ion-item routerLink="/home" ><ion-icon name="home"></ion-icon> Página principal </ion-item>
+          <ion-item routerLink="/home">
+            <ion-icon name="home"></ion-icon> Página principal
+          </ion-item>
         </ion-menu-toggle>
         <ion-menu-toggle>
-          <ion-item routerLink="/reportes"><ion-icon name="copy"></ion-icon> Reportes </ion-item>
+          <ion-item routerLink="/reportes">
+            <ion-icon name="copy"></ion-icon> Reportes
+          </ion-item>
         </ion-menu-toggle>
         <ion-menu-toggle>
-          <ion-item routerLink="/login"><ion-icon name="person"></ion-icon>  Login </ion-item>
+          <ion-item routerLink="/login">
+            <ion-icon name="person"></ion-icon> Login
+          </ion-item>
         </ion-menu-toggle>
         <ion-menu-toggle>
-          <ion-item routerLink="/registro"><ion-icon name="finger-print"></ion-icon> Registrar </ion-item>
+          <ion-item routerLink="/registro">
+            <ion-icon name="finger-print"></ion-icon> Registrar
+          </ion-item>
         </ion-menu-toggle>
+        <div *ngIf="flag_sesion">
+          <ion-menu-toggle>
+            <ion-item routerLink="/login" (click)="cerrarSesion()">
+              <ion-icon name="power"></ion-icon> Cerrar sesion
+            </ion-item>
+          </ion-menu-toggle>
+        </div>
+
       </ion-list>
     </ion-content>
   </ion-menu>
