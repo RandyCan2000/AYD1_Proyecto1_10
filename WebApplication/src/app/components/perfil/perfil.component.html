@@ -1,0 +1,46 @@
+<div class="container">
+    <mat-card>
+        <mat-card-title>Perfil</mat-card-title>
+        <mat-card-subtitle>Municipalidad de Guatemala</mat-card-subtitle>
+        <mat-card-content>
+            <form>
+                <mat-form-field class="left">
+                    <mat-label>Nombre</mat-label>
+                    <input matInput [(ngModel)]="User.nombre" name="nombre">
+                </mat-form-field>
+                <mat-form-field class="right">
+                    <mat-label>Apellido</mat-label>
+                    <input matInput [(ngModel)]="User.apellido" name="apellido">
+                </mat-form-field>
+                <mat-form-field class="full">
+                    <mat-label>Usuario</mat-label>
+                    <input matInput type="text" [(ngModel)]="User.usuario" name="usuario">
+                </mat-form-field>
+                <mat-form-field class="full">
+                    <mat-label>Correo</mat-label>
+                    <input matInput type="email" [(ngModel)]="User.correo" name="correo">
+                </mat-form-field>
+                <mat-form-field class="left">
+                    <mat-label>Fecha Nacimiento</mat-label>
+                    <input matInput type="date" [(ngModel)]="User.fechanacimiento" name="fechaNacimiento">
+                </mat-form-field>
+                <mat-form-field class="right">
+                    <mat-label>Edad</mat-label>
+                    <input matInput type="number" [(ngModel)]="User.edad" name="edad">
+                </mat-form-field>
+                <mat-form-field class="left">
+                    <mat-label>Telefono</mat-label>
+                    <input matInput type="number" [(ngModel)]="User.telefono" name="telefono">
+                </mat-form-field>
+                <br>
+                <mat-radio-group aria-label="Select an option" disabled="true" [(ngModel)]="User.tipo" name="tipo">
+                    <mat-radio-button value="administrador">Administrador</mat-radio-button>
+                    <mat-radio-button value="empleado">Empleado</mat-radio-button>
+                </mat-radio-group>
+            </form>
+        </mat-card-content>
+        <mat-card-actions>
+        </mat-card-actions>
+        <mat-card-footer><span>© grupo 10</span></mat-card-footer>
+    </mat-card>
+</div>

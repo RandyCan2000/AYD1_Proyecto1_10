@@ -1,0 +1,93 @@
+<div class="container">
+    <div class="mat-elevation-z8">
+
+        <mat-form-field>
+            <mat-label>Filtro</mat-label>
+            <input matInput placeholder="Ex. Juan" (keyup)="applyFilter($event.target.value)" autocomplete="off">
+            <mat-icon matSuffix mat-button [matMenuTriggerFor]="menu" class="filter">filter_list</mat-icon>
+            <mat-menu #menu="matMenu" class="text-white">
+                <mat-radio-group aria-label="Select an option" [(ngModel)]="SelectOptionRadioButton" (change)="selectRadioButton()">
+                    <mat-radio-button value="1">No. Reporte</mat-radio-button>
+                    <br>
+                    <mat-radio-button value="2">Zona</mat-radio-button>
+                    <br>
+                    <mat-radio-button value="3">Fecha Reporte</mat-radio-button>
+                    <br>
+                    <mat-radio-button value="4">Hora Reporte</mat-radio-button>
+                    <br>
+                    <mat-radio-button value="5">Estado</mat-radio-button>
+                    <br>
+                    <mat-radio-button value="6">Tipo Problema</mat-radio-button>
+                    <br>
+                    <mat-radio-button value="7">Nombre Usuario</mat-radio-button>
+                    <br>
+                    <mat-radio-button value="8">Todo</mat-radio-button>
+                </mat-radio-group>
+            </mat-menu>
+        </mat-form-field>
+
+        <table mat-table [dataSource]="dataSource" matSort >
+      
+          <!-- Position Column -->
+          <ng-container matColumnDef="idreporte">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> No. Reporte </th>
+            <td mat-cell *matCellDef="let element"> {{element.idreporte}} </td>
+          </ng-container>
+      
+          <!-- Name Column -->
+          <ng-container matColumnDef="zona">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Zona </th>
+            <td mat-cell *matCellDef="let element"> {{element.zona}} </td>
+          </ng-container>
+      
+          <!-- Weight Column -->
+          <ng-container matColumnDef="fechareporte">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha Reporte </th>
+            <td mat-cell *matCellDef="let element"> {{element.fechareporte}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="horareporte">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora Reporte </th>
+            <td mat-cell *matCellDef="let element"> {{element.horareporte}} </td>
+          </ng-container>
+      
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="estado">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Estado </th>
+            <td mat-cell *matCellDef="let element">
+              <p *ngIf="element.estado == 0">Sin Revisar</p>
+              <p *ngIf="element.estado == 1">Revisada</p>
+              <p *ngIf="element.estado == 2">Notificada</p>
+              <p *ngIf="element.estado == 3">Solucionada</p>
+            </td>
+          </ng-container>
+      
+          <ng-container matColumnDef="tipoproblema">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Tipo Problema </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.nombre}}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="usuario">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre Usuario </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.nombreusuario}}
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr 
+            mat-row 
+            (click)="SelectData(row)"
+            *matRowDef="let row; columns: displayedColumns;"
+            class="Item"
+            title="Click Para Revisar"
+          ></tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
+      
+        
+      </div>
+</div>
