@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsuarioService } from '../../services/usuario.service';
-import { MireportePage } from '../mireporte/mireporte.page';
+import { AppComponent } from '../../app.component';
 
 @Component({
   selector: 'app-reportes',
@@ -12,9 +12,10 @@ export class ReportesPage implements OnInit {
 
   misreportes:any = null;
 
-  constructor(private router:Router, private services:UsuarioService) { }
+  constructor(private router:Router, private services:UsuarioService, private appComponent: AppComponent) { }
 
   ngOnInit() {
+    this.appComponent.update();
     this.services.reporte_x_id(this.services.getIdUser()).subscribe(
       (res:any)=>{
         console.log(res)

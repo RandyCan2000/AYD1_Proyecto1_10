@@ -31,6 +31,10 @@ const routes: Routes = [
     path: 'mireporte/:id',
     loadChildren: () => import('./pages/mireporte/mireporte.module').then( m => m.MireportePageModule)
   },
+  {
+    path: 'perfil',
+    loadChildren: () => import('./pages/perfil/perfil.module').then( m => m.PerfilPageModule)
+  },
 ];
 
 @NgModule({

@@ -18,6 +18,7 @@ export class LoginPage implements OnInit {
   constructor(private service: UsuarioService, private router: Router, private appComponent: AppComponent) { }
 
   ngOnInit() {
+    this.appComponent.update();
   }
 
   btnLogin() {
@@ -32,7 +33,7 @@ export class LoginPage implements OnInit {
             this.flag_credencial = false;
             localStorage.setItem('token', JSON.stringify(res[0]));
             this.router.navigate(['/reportes'])
-            this.appComponent.update();
+            
           }
           (<HTMLInputElement>document.getElementById('user')).value = "";
           (<HTMLInputElement>document.getElementById('pass')).value = '';
