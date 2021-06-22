@@ -12,11 +12,13 @@ export class ReportesPage implements OnInit {
 
   misreportes:any = null;
 
-  constructor(private router:Router, private services:UsuarioService, private appComponent: AppComponent) { }
+  constructor(private router:Router, private services:UsuarioService, private appComponent: AppComponent) { 
+    this.appComponent.update();
+  }
 
   ngOnInit() {
     this.appComponent.update();
-    this.services.reporte_x_id(this.services.getIdUser()).subscribe(
+    this.services.reporte_x_user(this.services.getIdUser()).subscribe(
       (res:any)=>{
         console.log(res)
         this.misreportes = res;

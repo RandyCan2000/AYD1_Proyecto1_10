@@ -31,8 +31,10 @@ export class LoginPage implements OnInit {
             this.flag_credencial = true;
           } else {
             this.flag_credencial = false;
+            this.appComponent.update();
             localStorage.setItem('token', JSON.stringify(res[0]));
-            this.router.navigate(['/reportes'])
+            //this.router.navigate(['/reportes'])
+            window.location.replace('/reportes');
             
           }
           (<HTMLInputElement>document.getElementById('user')).value = "";

@@ -47,10 +47,11 @@ export class NuevoReportePage implements OnInit {
       this.flag_campo = true;
     } else {
       this.flag_campo = false;
+      console.log(this.reporte)
       this.services.nuevoReporte(this.reporte).subscribe(
         (res: any) => {
-          //console.log(res.idReporte);
-
+          console.log(res.idReporte);
+          //listo para guardar imagenes
           //window.location.replace('/reportes')
         }
       );

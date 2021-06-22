@@ -16,15 +16,16 @@ export class MireportePage implements OnInit {
   constructor(private router:Router, private activeRoute: ActivatedRoute, private services:UsuarioService) { }
 
   ngOnInit() {
-    let id = this.activeRoute.snapshot.paramMap.get('id');
+    let id_reporte = this.activeRoute.snapshot.paramMap.get('id');
     let iduser = this.services.getIdUser()
     if(iduser == 1){
       this.user = "anonimo";
     }else{
       this.user = this.services.getUserName();
+      console.log(this.user)
     }
 
-    this.services.reporte_x_id(2).subscribe(
+    this.services.reporte_x_id(id_reporte).subscribe(
       (res:any)=>{
         /* obtener reporte por id */
         console.log(res[0]);
@@ -37,7 +38,7 @@ export class MireportePage implements OnInit {
          
         //digamos que se obtiene el id del reporte id:1
         /* ahora se hace otra peticion para obtener los mensajes */
-        this.services.getMensajeXidReporte(1).subscribe(
+        this.services.getMensajeXidReporte(id_reporte).subscribe(
           (res:any)=>{
             console.log(res);
             this.notificaion = res;

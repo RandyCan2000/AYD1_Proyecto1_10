@@ -18,8 +18,16 @@ export class AppComponent  {
   
 
   update() {
-    this.usuario = this.services.getUserName();
-    this.flag_sesion = true;
+    if(this.services.isAnonimo()){
+      this.usuario = "anonimo"
+      this.flag_sesion = false;
+      
+    }else{
+      this.usuario = this.services.getUserName();
+      console.log(this.usuario)
+      this.flag_sesion = true;
+    }
+    
   }
 
 cerrarSesion(){

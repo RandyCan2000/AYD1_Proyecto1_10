@@ -24,11 +24,15 @@ export class UsuarioService {
   }
 
   getUserName(){
-    return this.getUsuario().usuario;
+    if(this.getUsuario() != null){
+      return this.getUsuario().usuario;
+    }
+    
   }
 
   logout() {
     localStorage.removeItem('token');
+    window.location.replace('login')
   }
 
   getIdUser(){
@@ -38,12 +42,22 @@ export class UsuarioService {
     return this,this.getUsuario().idusuario;
   }
 
-  reporte_x_id(id:any){
+  reporte_x_user(id:any){
     return this.http.get(`${this.URL}/reporte/${id}`);
   }
 
+  reporte_x_id(id:any){
+    return this.http.get(`${this.URL}/reportePorId/${id}`);
+  }
 
 
+  isAnonimo(){
+    if(this.getUsuario() != null){
+      return false;
+    }
+
+    return true;
+  }
 
 
 
@@ -55,8 +69,8 @@ export class UsuarioService {
     return this.http.post<any>(this.URL+'/reporte', reporte);
   }
 
-  getMensajeXidReporte(id:any){
-    return this.http.get(`${this.URL}/mensaje/${id}`);
+  getMensajeXidReporte(id_reporte:any){
+    return this.http.get(`${this.URL}/mensaje/${id_reporte}`);
   }
 
 
