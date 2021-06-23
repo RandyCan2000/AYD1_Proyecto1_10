@@ -12,3 +12,4 @@ exports.pool = new pg_1.Pool({
         rejectUnauthorized: false
     }
 });
+//# sourceMappingURL=database.js.map

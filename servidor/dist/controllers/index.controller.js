@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.crearMensaje = exports.getMensajePorUsuario = exports.getMensaje = exports.crearImagenReporte = exports.getImagenReporteId = exports.getImagenReporte = exports.getDetalleProblema = exports.getTipoProblemas = exports.actualizarReporte = exports.crearReporte = exports.getReportesPorId = exports.getReportes = exports.loginEmpleado = exports.login = exports.crearEmpleado = exports.getEmpleadoPorId = exports.getEmpleados = exports.crearUsuario = exports.getUsuarioPorId = exports.getUsuarios = void 0;
+exports.crearMensaje = exports.getMensajePorUsuario = exports.getMensaje = exports.crearImagenReporte = exports.getImagenReporteIdReporte = exports.getImagenReporteId = exports.getImagenReporte = exports.getDetalleProblema = exports.getTipoProblemas = exports.actualizarReporte = exports.crearReporte = exports.getReportesPorIdReporte = exports.getReportesPorId = exports.getReportes = exports.loginEmpleado = exports.login = exports.crearEmpleado = exports.getEmpleadoPorId = exports.getEmpleados = exports.crearUsuario = exports.getUsuarioPorId = exports.getUsuarios = void 0;
 const database_1 = require("../database");
 /** METODO PARA RETORNAR TODOS LOS USUARIOS */
 const getUsuarios = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -69,7 +69,7 @@ exports.getEmpleadoPorId = getEmpleadoPorId;
 const crearEmpleado = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { nombre, apellido, telefono, correo, edad, fechaNacimiento, usuario, password, tipo } = req.body;
     const response = yield database_1.pool.query('INSERT INTO empleado (nombre,apellido,telefono,correo,edad,fechaNacimiento,usuario,password,tipo)'
-        + 'VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9)', [nombre, apellido, telefono, correo, edad, fechaNacimiento, usuario, password, tipo]);
+        + 'VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9)', [nombre, apellido, telefono, correo, edad, String(fechaNacimiento), usuario, password, tipo]);
     return res.json({
         message: "Empleado Creado",
         body: {
@@ -117,22 +117,28 @@ exports.getReportes = getReportes;
 /** RETORNAR REPORTES POR ID */
 const getReportesPorId = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = parseInt(req.params.id);
-    const response = yield database_1.pool.query('SELECT * FROM reporte WHERE idReporte=$1', [id]);
+    const response = yield database_1.pool.query('SELECT * FROM reporte WHERE idUsuario=$1', [id]);
     return res.status(200).json(response.rows);
 });
 exports.getReportesPorId = getReportesPorId;
+/** RETORNAR REPORTES POR ID */
+const getReportesPorIdReporte = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = parseInt(req.params.id);
+    const response = yield database_1.pool.query('SELECT * FROM reporte WHERE idReporte=$1', [id]);
+    return res.status(200).json(response.rows);
+});
+exports.getReportesPorIdReporte = getReportesPorIdReporte;
 /** GUARDAR REPORTE */
 const crearReporte = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { zona, fechaReporte, horaReporte, fechaProblema, horaProblema, descripcion, idTipoProblema, idUsuario } = req.body;
     const response = yield database_1.pool.query('INSERT INTO reporte (zona,fechaReporte,horaReporte,fechaProblema,horaProblema,descripcion,idTipoProblema,idUsuario)'
         + 'VALUES($1,$2,$3,$4,$5,$6,$7,$8)', [zona, fechaReporte, horaReporte, fechaProblema, horaProblema, descripcion, idTipoProblema, idUsuario]);
+    const retornar = yield database_1.pool.query('SELECT MAX(idReporte) as idReporte FROM reporte');
+    //console.log(retornar.rows[0].idreporte);
+    const idReporte = retornar.rows[0].idreporte;
     return res.json({
-        message: "Reporte Creado",
-        body: {
-            reporte: {
-                zona, fechaReporte, horaReporte, fechaProblema, horaProblema, descripcion, idTipoProblema, idUsuario
-            }
-        }
+        idReporte: idReporte,
+        estado: true
     });
 });
 exports.crearReporte = crearReporte;
@@ -195,6 +201,18 @@ const getImagenReporteId = (req, res) => __awaiter(void 0, void 0, void 0, funct
     }
 });
 exports.getImagenReporteId = getImagenReporteId;
+const getImagenReporteIdReporte = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const id = parseInt(req.params.id);
+        const response = yield database_1.pool.query('SELECT * FROM imagenReporte WHERE idReporte=$1', [id]);
+        return res.status(200).json(response.rows);
+    }
+    catch (e) {
+        console.log(e);
+        return res.status(500).json('Internal Server error');
+    }
+});
+exports.getImagenReporteIdReporte = getImagenReporteIdReporte;
 /** GUARDAR DATOS EN LA TABLA IMAGEN-REPORTE */
 const crearImagenReporte = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { url, idReporte } = req.body;
@@ -227,7 +245,7 @@ const getMensajePorUsuario = (req, res) => __awaiter(void 0, void 0, void 0, fun
         const id = parseInt(req.params.id);
         const response = yield database_1.pool.query("SELECT u.idUsuario,u.nombre as nombreUsuario,m.descripcion,e.nombre as nombreEmpleado,r.idReporte " +
             " FROM mensaje m,usuario u,empleado e,reporte r WHERE m.idReporte = r.idReporte" +
-            " AND m.idEmpleado = e.idEmpleado AND r.idUsuario = u.idUsuario AND r.idUsuario = $1;", [id]);
+            " AND m.idEmpleado = e.idEmpleado AND r.idUsuario = u.idUsuario AND r.idReporte = $1;", [id]);
         return res.status(200).json(response.rows);
     }
     catch (e) {
@@ -249,3 +267,4 @@ const crearMensaje = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     });
 });
 exports.crearMensaje = crearMensaje;
+//# sourceMappingURL=index.controller.js.map

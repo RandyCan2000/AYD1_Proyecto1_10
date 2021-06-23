@@ -56,7 +56,9 @@ export const crearEmpleado = async (req:Request,res:Response)=>{
     const {nombre,apellido,telefono,correo,edad,fechaNacimiento,usuario,password,tipo} = req.body;
     const response:QueryResult = await pool.query('INSERT INTO empleado (nombre,apellido,telefono,correo,edad,fechaNacimiento,usuario,password,tipo)'
                                                  +'VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9)',
-    [nombre,apellido,telefono,correo,edad,fechaNacimiento,usuario,password,tipo]);
+    [nombre,apellido,telefono,correo,edad,String(fechaNacimiento),usuario,password,tipo]);
+   
+
     return res.json({
         message:"Empleado Creado",
         body:{
@@ -99,6 +101,12 @@ export const getReportes = async (req:Request,res:Response):Promise<Response>=>{
 /** RETORNAR REPORTES POR ID */
 export const getReportesPorId = async (req:Request,res:Response):Promise<Response>=>{
     const id = parseInt(req.params.id);
+    const response = await pool.query('SELECT * FROM reporte WHERE idUsuario=$1',[id]);
+    return res.status(200).json(response.rows);
+}
+/** RETORNAR REPORTES POR ID */
+export const getReportesPorIdReporte = async (req:Request,res:Response):Promise<Response>=>{
+    const id = parseInt(req.params.id);
     const response = await pool.query('SELECT * FROM reporte WHERE idReporte=$1',[id]);
     return res.status(200).json(response.rows);
 }
@@ -108,14 +116,12 @@ export const crearReporte = async (req:Request,res:Response)=>{
     const response:QueryResult = await pool.query('INSERT INTO reporte (zona,fechaReporte,horaReporte,fechaProblema,horaProblema,descripcion,idTipoProblema,idUsuario)'
                                                  +'VALUES($1,$2,$3,$4,$5,$6,$7,$8)',
     [zona,fechaReporte,horaReporte,fechaProblema,horaProblema,descripcion,idTipoProblema,idUsuario]);
+    const retornar = await pool.query('SELECT MAX(idReporte) as idReporte FROM reporte');
+    //console.log(retornar.rows[0].idreporte);
+    const idReporte = retornar.rows[0].idreporte;
     return res.json({
-        message:"Reporte Creado",
-        body:{
-            reporte:{
-                zona,fechaReporte,horaReporte,fechaProblema,horaProblema,descripcion,idTipoProblema,idUsuario
-            }
-        }
-    });
+        idReporte:idReporte,
+        estado:true});
 }
 /** ACTUALIZAR REPORTE */
 export const actualizarReporte = async (req:Request,res:Response):Promise<Response> =>{
@@ -169,6 +175,16 @@ export const getImagenReporteId = async (req:Request,res:Response):Promise<Respo
         return res.status(500).json('Internal Server error');
     }
 }
+export const getImagenReporteIdReporte = async (req:Request,res:Response):Promise<Response>=>{
+    try{
+        const id = parseInt(req.params.id);
+        const response:QueryResult = await pool.query('SELECT * FROM imagenReporte WHERE idReporte=$1',[id]);
+        return res.status(200).json(response.rows);
+    }catch(e){
+        console.log(e);
+        return res.status(500).json('Internal Server error');
+    }
+}
 /** GUARDAR DATOS EN LA TABLA IMAGEN-REPORTE */
 export const crearImagenReporte = async(req:Request,res:Response)=>{
     const{url,idReporte} = req.body;
@@ -199,13 +215,14 @@ export const getMensajePorUsuario = async(req:Request,res:Response):Promise<Resp
         const id = parseInt(req.params.id)
         const response:QueryResult = await pool.query("SELECT u.idUsuario,u.nombre as nombreUsuario,m.descripcion,e.nombre as nombreEmpleado,r.idReporte "+
                                                       " FROM mensaje m,usuario u,empleado e,reporte r WHERE m.idReporte = r.idReporte"+
-                                                      " AND m.idEmpleado = e.idEmpleado AND r.idUsuario = u.idUsuario AND r.idUsuario = $1;",[id]);
+                                                      " AND m.idEmpleado = e.idEmpleado AND r.idUsuario = u.idUsuario AND r.idReporte = $1;",[id]);
         return res.status(200).json(response.rows);
     }catch(e){
         console.log(e);
         return res.status(500).json('Internal Server error');
     }
 }
+
 
 export const crearMensaje = async(req:Request,res:Response)=>{
     const{descripcion,idReporte,idEmpleado} = req.body;

@@ -16,3 +16,5 @@ app.use(index_1.default);
 app.listen(app.get('port'), () => {
     console.log("Server on port", app.get('port'));
 });
+module.exports = app;
+//# sourceMappingURL=index.js.map
