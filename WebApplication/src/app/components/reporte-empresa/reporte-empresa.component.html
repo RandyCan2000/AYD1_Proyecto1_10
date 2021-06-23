@@ -1,0 +1,26 @@
+<div class="container">
+    <mat-card>
+        <mat-card-title>Reporte a empresas</mat-card-title>
+        <mat-card-content>
+          
+                <mat-form-field class="full">
+                    <mat-label >Correo</mat-label>
+                    <input matInput [(ngModel)]="correo" name="nombre">
+                </mat-form-field>
+                <mat-form-field class="full">
+                    <mat-label>Asunto</mat-label>
+                    <input matInput [(ngModel)]="asunto"  name="nombre">
+                </mat-form-field>
+                <mat-form-field class="full">
+                    <mat-label>Descripcion</mat-label>
+                    <textarea matInput [(ngModel)]="descripcion" rows="5" cols="40" placeholder="text"></textarea>
+                </mat-form-field>
+               
+            
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button color="primary" (click)="enviar()">Enviar Reporte</button>
+        </mat-card-actions>
+        <mat-card-footer><span>© grupo 10</span></mat-card-footer>
+    </mat-card>
+</div>

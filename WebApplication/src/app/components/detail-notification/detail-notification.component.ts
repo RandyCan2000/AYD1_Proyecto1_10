@@ -25,7 +25,7 @@ export class DetailNotificationComponent implements OnInit {
 
   public TiposProblema:TipoProblema[]=[]
 
-  public Images:string[]=[
+  public Images:any[]=[
     "https://images.unsplash.com/photo-1598128558393-70ff21433be0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=422&q=80",
     "https://images.unsplash.com/photo-1584714268709-c3dd9c92b378?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=799&q=80",
     "https://images.unsplash.com/photo-1584713503693-bb386ec95cf2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=667&q=80",
@@ -71,6 +71,7 @@ export class DetailNotificationComponent implements OnInit {
     await this.service.GetImageOfReport(String(this.ObjectView.idnotificacion)).then(
       result=>{
         this.Images = result
+        
         this.numberImage = 0
       }
     )
@@ -83,10 +84,12 @@ export class DetailNotificationComponent implements OnInit {
 
   PreviewImage(){
     this.numberImage = this.numberImage-1 < 0? this.Images.length-1 : this.numberImage - 1 ;
+    
   }
 
   NextImage(){
     this.numberImage = this.numberImage+1 === this.Images.length? 0 : this.numberImage +1 ;
+   
   }
 
   async ResponseNotification(){
