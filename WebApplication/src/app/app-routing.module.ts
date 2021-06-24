@@ -5,13 +5,14 @@ import { PerfilComponent } from './components/perfil/perfil.component';
 import { ReportesComponent } from './components/reportes/reportes.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { RegistrarEmpleadoComponent } from './components/registrar-empleado/registrar-empleado.component';
-
+import { ReporteEmpresaComponent } from './components/reporte-empresa/reporte-empresa.component';
 const routes: Routes = [
   { path:'', pathMatch:'full',  redirectTo:'login'},
   { path:'login', component: LoginComponent},
   { path:'notification', component: ReportesComponent},
   { path:'perfil', component: PerfilComponent},
-  { path:'registrar', component: RegistrarEmpleadoComponent}
+  { path:'registrar', component: RegistrarEmpleadoComponent},
+  { path:'reporteEmpresa', component: ReporteEmpresaComponent}
 ];
 
 @NgModule({

@@ -1,0 +1,40 @@
+mat-card-title{
+    text-align: center;
+}
+mat-card-subtitle{
+    text-align: center;
+}
+mat-card-content{
+}
+mat-card-actions{
+    text-align: center;
+}
+mat-card-footer{
+    text-align: center;
+}
+mat-radio-group{
+    display: flex;
+    justify-content: center;
+}
+mat-radio-button{
+    padding-left: 5px;
+}
+.container{
+    max-width: 500px;
+    min-width: 250px;
+    width: 100%;
+    margin-top: 25px;
+}
+.form{
+    max-width: 100%;
+}
+.full{
+    width: 100%;
+}
+.left{
+    width: 45%;
+}
+.right{
+    margin-left: 10%;
+    width: 45%;
+}

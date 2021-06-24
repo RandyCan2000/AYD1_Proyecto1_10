@@ -14,6 +14,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { ServicesService } from './services/services.service';
 import { RegistrarEmpleadoComponent } from './components/registrar-empleado/registrar-empleado.component';
+import { ReporteEmpresaComponent } from './components/reporte-empresa/reporte-empresa.component';
+
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { RegistrarEmpleadoComponent } from './components/registrar-empleado/regi
     ReportesComponent,
     DetailNotificationComponent,
     PerfilComponent,
-    RegistrarEmpleadoComponent
+    RegistrarEmpleadoComponent,
+    ReporteEmpresaComponent
+    
   ],
   imports: [
     BrowserModule,
