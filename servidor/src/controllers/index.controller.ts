@@ -21,18 +21,25 @@ export const getUsuarioPorId = async (req:Request,res:Response):Promise<Response
 }
 /** METODO PARA GUARDAR UN USUARIO*/
 export const crearUsuario = async (req:Request,res:Response):Promise<Response> =>{
-    const {nombre,apellido,telefono,correo,edad,fechaNacimiento,usuario,password} = req.body;
-    const response:QueryResult = await pool.query('INSERT INTO usuario (nombre,apellido,telefono,correo,edad,fechaNacimiento,usuario,password)' 
-                                                 +'VALUES($1,$2,$3,$4,$5,$6,$7,$8)',
-    [nombre,apellido,telefono,correo,edad,fechaNacimiento,usuario,password]);
-    return res.json({
-        message:"Usuario Creado",
-        body:{
-            user:{
-                nombre,apellido,telefono,correo,edad,fechaNacimiento,usuario,password
+    try{
+
+        const {nombre,apellido,telefono,correo,edad,fechaNacimiento,usuario,password} = req.body;
+        const response:QueryResult = await pool.query('INSERT INTO usuario (nombre,apellido,telefono,correo,edad,fechaNacimiento,usuario,password)' 
+                                                     +'VALUES($1,$2,$3,$4,$5,$6,$7,$8)',
+        [nombre,apellido,telefono,correo,edad,fechaNacimiento,usuario,password]);
+        return res.json({
+            message:"Usuario Creado",
+            body:{
+                user:{
+                    nombre,apellido,telefono,correo,edad,fechaNacimiento,usuario,password
+                }
             }
-        }
-    });
+        });
+        
+    }catch(e){
+        return res.status(400).json("usuario no creado");
+    }
+   
 }
 /** METODO PARA RETORNAR TODOS LOS EMPLEADOS*/
 export const getEmpleados = async (req:Request,res:Response):Promise<Response>=>{
@@ -112,6 +119,7 @@ export const getReportesPorIdReporte = async (req:Request,res:Response):Promise<
 }
 /** GUARDAR REPORTE */
 export const crearReporte = async (req:Request,res:Response)=>{
+    try{
     const {zona,fechaReporte,horaReporte,fechaProblema,horaProblema,descripcion,idTipoProblema,idUsuario} = req.body;
     const response:QueryResult = await pool.query('INSERT INTO reporte (zona,fechaReporte,horaReporte,fechaProblema,horaProblema,descripcion,idTipoProblema,idUsuario)'
                                                  +'VALUES($1,$2,$3,$4,$5,$6,$7,$8)',
@@ -122,6 +130,10 @@ export const crearReporte = async (req:Request,res:Response)=>{
     return res.json({
         idReporte:idReporte,
         estado:true});
+    }catch(e){
+        return res.status(400).json("No se creo el reporte");
+    }
+    
 }
 /** ACTUALIZAR REPORTE */
 export const actualizarReporte = async (req:Request,res:Response):Promise<Response> =>{
@@ -225,17 +237,22 @@ export const getMensajePorUsuario = async(req:Request,res:Response):Promise<Resp
 
 
 export const crearMensaje = async(req:Request,res:Response)=>{
-    const{descripcion,idReporte,idEmpleado} = req.body;
-    const response:QueryResult = await pool.query('INSERT INTO mensaje(descripcion,idReporte,idEmpleado) VALUES($1,$2,$3)',
-                                                  [descripcion,idReporte,idEmpleado]);
-    return res.json({
-        message:"Mensaje Creado",
-        body:{
-            mensaje:{
-                descripcion,idReporte,idEmpleado
+    try{
+        const{descripcion,idReporte,idEmpleado} = req.body;
+        const response:QueryResult = await pool.query('INSERT INTO mensaje(descripcion,idReporte,idEmpleado) VALUES($1,$2,$3)',
+                                                      [descripcion,idReporte,idEmpleado]);
+        return res.json({
+            message:"Mensaje Creado",
+            body:{
+                mensaje:{
+                    descripcion,idReporte,idEmpleado
+                }
             }
-        }
-    });
+        });
+    }catch(e){
+        return res.status(400).json("No se creo el mensaje");
+    }
+   
 
 }
 

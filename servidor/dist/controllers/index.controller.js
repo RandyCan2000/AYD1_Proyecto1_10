@@ -32,17 +32,22 @@ const getUsuarioPorId = (req, res) => __awaiter(void 0, void 0, void 0, function
 exports.getUsuarioPorId = getUsuarioPorId;
 /** METODO PARA GUARDAR UN USUARIO*/
 const crearUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { nombre, apellido, telefono, correo, edad, fechaNacimiento, usuario, password } = req.body;
-    const response = yield database_1.pool.query('INSERT INTO usuario (nombre,apellido,telefono,correo,edad,fechaNacimiento,usuario,password)'
-        + 'VALUES($1,$2,$3,$4,$5,$6,$7,$8)', [nombre, apellido, telefono, correo, edad, fechaNacimiento, usuario, password]);
-    return res.json({
-        message: "Usuario Creado",
-        body: {
-            user: {
-                nombre, apellido, telefono, correo, edad, fechaNacimiento, usuario, password
+    try {
+        const { nombre, apellido, telefono, correo, edad, fechaNacimiento, usuario, password } = req.body;
+        const response = yield database_1.pool.query('INSERT INTO usuario (nombre,apellido,telefono,correo,edad,fechaNacimiento,usuario,password)'
+            + 'VALUES($1,$2,$3,$4,$5,$6,$7,$8)', [nombre, apellido, telefono, correo, edad, fechaNacimiento, usuario, password]);
+        return res.json({
+            message: "Usuario Creado",
+            body: {
+                user: {
+                    nombre, apellido, telefono, correo, edad, fechaNacimiento, usuario, password
+                }
             }
-        }
-    });
+        });
+    }
+    catch (e) {
+        return res.status(400).json("usuario no creado");
+    }
 });
 exports.crearUsuario = crearUsuario;
 /** METODO PARA RETORNAR TODOS LOS EMPLEADOS*/
@@ -130,16 +135,21 @@ const getReportesPorIdReporte = (req, res) => __awaiter(void 0, void 0, void 0, 
 exports.getReportesPorIdReporte = getReportesPorIdReporte;
 /** GUARDAR REPORTE */
 const crearReporte = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { zona, fechaReporte, horaReporte, fechaProblema, horaProblema, descripcion, idTipoProblema, idUsuario } = req.body;
-    const response = yield database_1.pool.query('INSERT INTO reporte (zona,fechaReporte,horaReporte,fechaProblema,horaProblema,descripcion,idTipoProblema,idUsuario)'
-        + 'VALUES($1,$2,$3,$4,$5,$6,$7,$8)', [zona, fechaReporte, horaReporte, fechaProblema, horaProblema, descripcion, idTipoProblema, idUsuario]);
-    const retornar = yield database_1.pool.query('SELECT MAX(idReporte) as idReporte FROM reporte');
-    //console.log(retornar.rows[0].idreporte);
-    const idReporte = retornar.rows[0].idreporte;
-    return res.json({
-        idReporte: idReporte,
-        estado: true
-    });
+    try {
+        const { zona, fechaReporte, horaReporte, fechaProblema, horaProblema, descripcion, idTipoProblema, idUsuario } = req.body;
+        const response = yield database_1.pool.query('INSERT INTO reporte (zona,fechaReporte,horaReporte,fechaProblema,horaProblema,descripcion,idTipoProblema,idUsuario)'
+            + 'VALUES($1,$2,$3,$4,$5,$6,$7,$8)', [zona, fechaReporte, horaReporte, fechaProblema, horaProblema, descripcion, idTipoProblema, idUsuario]);
+        const retornar = yield database_1.pool.query('SELECT MAX(idReporte) as idReporte FROM reporte');
+        //console.log(retornar.rows[0].idreporte);
+        const idReporte = retornar.rows[0].idreporte;
+        return res.json({
+            idReporte: idReporte,
+            estado: true
+        });
+    }
+    catch (e) {
+        return res.status(400).json("No se creo el reporte");
+    }
 });
 exports.crearReporte = crearReporte;
 /** ACTUALIZAR REPORTE */
@@ -255,16 +265,21 @@ const getMensajePorUsuario = (req, res) => __awaiter(void 0, void 0, void 0, fun
 });
 exports.getMensajePorUsuario = getMensajePorUsuario;
 const crearMensaje = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { descripcion, idReporte, idEmpleado } = req.body;
-    const response = yield database_1.pool.query('INSERT INTO mensaje(descripcion,idReporte,idEmpleado) VALUES($1,$2,$3)', [descripcion, idReporte, idEmpleado]);
-    return res.json({
-        message: "Mensaje Creado",
-        body: {
-            mensaje: {
-                descripcion, idReporte, idEmpleado
+    try {
+        const { descripcion, idReporte, idEmpleado } = req.body;
+        const response = yield database_1.pool.query('INSERT INTO mensaje(descripcion,idReporte,idEmpleado) VALUES($1,$2,$3)', [descripcion, idReporte, idEmpleado]);
+        return res.json({
+            message: "Mensaje Creado",
+            body: {
+                mensaje: {
+                    descripcion, idReporte, idEmpleado
+                }
             }
-        }
-    });
+        });
+    }
+    catch (e) {
+        return res.status(400).json("No se creo el mensaje");
+    }
 });
 exports.crearMensaje = crearMensaje;
 //# sourceMappingURL=index.controller.js.map
