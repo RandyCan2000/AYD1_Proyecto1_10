@@ -73,6 +73,9 @@ export class UsuarioService {
     return this.http.get(`${this.URL}/mensaje/${id_reporte}`);
   }
 
+  postImagenes(obj:any):Promise<any>{
+    return this.http.post(`${this.URL}/imagenReporte`,obj).toPromise()
+  }
 
 
 }
