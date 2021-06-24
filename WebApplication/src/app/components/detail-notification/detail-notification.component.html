@@ -1,0 +1,79 @@
+<mat-card>
+    <mat-card-title>
+        Notificación
+        <mat-icon style="position: absolute;right: 0%;" (click)="Close()" class="close">close</mat-icon>
+    </mat-card-title>
+    <mat-card-content>
+        <form class="example-form">
+            <mat-form-field class="half_left">
+                <mat-label>No. Notificacion</mat-label>
+                <input matInput [(ngModel)]="ObjectView.idnotificacion" name="idnotificacion" disabled='true'>
+            </mat-form-field>
+            <br>
+            <mat-form-field class="half_left">
+                <mat-label>Fecha Notificacion</mat-label>
+                <input matInput [(ngModel)]="ObjectView.fechanotificaion" name="fechanotificaion" disabled='true'>
+            </mat-form-field>
+            <mat-form-field class="half_right">
+                <mat-label>Hora Notificacion</mat-label>
+                <input matInput [(ngModel)]="ObjectView.horanotificacion" name="horanotificacion" disabled='true'>
+            </mat-form-field>
+            <br>
+            <mat-form-field class="half_left">
+                <mat-label>Fecha Problema</mat-label>
+                <input matInput [(ngModel)]="ObjectView.fechaproblema" name="fechaproblema" disabled='true'>
+            </mat-form-field>
+            <mat-form-field class="half_right">
+                <mat-label>Hora Problema</mat-label>
+                <input matInput [(ngModel)]="ObjectView.horaproblema" name="horaproblema" disabled='true'>
+            </mat-form-field>
+            <mat-form-field class="textArea">
+                <mat-label>Nombre Vecino</mat-label>
+                <input matInput [(ngModel)]="ObjectView.nombrevecino" name="nombrevecino" disabled='true'>
+            </mat-form-field>
+            <mat-form-field class="textArea">
+                <mat-label>Descripción</mat-label>
+                <textarea matInput rows="7" [(ngModel)]="ObjectView.descripcion" name="descripcion" disabled='true'></textarea>
+            </mat-form-field>
+
+            <mat-label>Estado</mat-label>
+            <br>
+            <mat-radio-group aria-label="Select an option" [(ngModel)]="ObjectView.estado" name="estado">
+                <mat-radio-button value="0">Sin Revisar</mat-radio-button>
+                <mat-radio-button value="1">Revisada</mat-radio-button>
+                <mat-radio-button value="2">Notificada</mat-radio-button>
+                <mat-radio-button value="3">Solucionada</mat-radio-button>
+            </mat-radio-group>
+            <br><br>
+            <mat-label>Tipo Problema</mat-label>
+            <br>
+            <mat-radio-group aria-label="Select an option" [(ngModel)]="ObjectView.tipoproblema" name="tipoproblema" disabled='true'>
+                <mat-radio-button *ngFor="let item of TiposProblema" [value]="item.idtipoproblema">{{item.nombre}}</mat-radio-button>
+            </mat-radio-group>
+
+        </form>
+        
+        <div class="images">
+            <div class="arrow_left">
+                <div (click)="PreviewImage()">
+                    <mat-icon >arrow_back_ios</mat-icon>
+                </div>
+            </div>
+            <div class="arrow_right">
+                <div (click)="NextImage()">
+                    <mat-icon>arrow_forward_ios</mat-icon>
+                </div>
+            </div>
+            <div class="ima">
+                <img mat-card-image src="{{Images[numberImage].url}}">
+            </div>
+        </div>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="ResponseNotification()">Responder</button>
+        <button mat-raised-button color="primary" (click)="ActualizarEstado()">Actualizar Estado</button>
+    </mat-card-actions>
+    <mat-card-footer>
+        © Grupo 10
+    </mat-card-footer>
+</mat-card>

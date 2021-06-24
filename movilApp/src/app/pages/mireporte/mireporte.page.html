@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start" (click)="btnBack()">
+      <ion-icon name="arrow-back-sharp"></ion-icon>
+    </ion-buttons>
+    <ion-title>mireporte</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding ion-text-center" [fullscreen]="true">
+  <div class="logo1">
+    <img src="https://remisiones.munimixco.gob.gt/assets/img/munimixco-logo.png" alt="">
+  </div>
+
+
+  <ion-card>
+    <ion-item  class="ion-activated ion-padding ion-text-center" lines="none">
+      <ion-label >estado: {{estado_reporte}} </ion-label>
+    </ion-item>
+  
+    <ion-item >
+      <ion-icon name="stop-outline" slot="start"></ion-icon>
+      <ion-label>tipo reporte: {{tipo_reporte}} </ion-label>
+    </ion-item>
+
+    <ion-item >
+      <ion-icon name="stop-outline" slot="start"></ion-icon>
+      <ion-label>zona: {{mireporte.zona}} </ion-label>
+    </ion-item>
+  
+    <ion-item class="ion-activated">
+      <ion-icon name="stop-outline" slot="start"></ion-icon>
+      <ion-label>problema: {{mireporte.fechaproblema}} </ion-label>
+      <ion-label>hora: {{mireporte.horaproblema}} </ion-label>
+    </ion-item>
+  
+    <ion-item>
+      <ion-icon name="stop-outline" slot="start"></ion-icon>
+      <ion-label>reporte: {{mireporte.fechareporte}}</ion-label>
+      <ion-label>hora: {{mireporte.horareporte}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name="stop-outline" slot="start"></ion-icon>
+      <ion-label>descripcion: {{mireporte.descripcion}}</ion-label>
+    </ion-item>
+
+    <br><br>
+    <ion-button color="danger" (click)="btnEliminar()">
+      <ion-icon name="trash-outline"></ion-icon>
+    </ion-button>
+    <br><br>
+
+  </ion-card>
+
+  
+
+
+  <br>
+  <ion-title color="primary">user: {{user}}</ion-title>
+  <ion-item>
+    <ion-label position="stacked">NOTIFICACIONES</ion-label>
+  </ion-item>
+
+  <ion-item *ngFor = "let n of notificaion">
+    <ion-label position="stacked">empleado: {{n.nombreempleado}}</ion-label>
+    <ion-textarea
+      disabled
+      readonly
+      value="{{n.descripcion}}">
+    </ion-textarea>
+  </ion-item>
+
+</ion-content>

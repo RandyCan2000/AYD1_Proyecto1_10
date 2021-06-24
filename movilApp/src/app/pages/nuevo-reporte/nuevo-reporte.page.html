@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start" routerLink="/reportes">
+      <ion-icon name="arrow-back-sharp"></ion-icon>
+    </ion-buttons>
+    <ion-title>{{nombre_reporte}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding ion-text-center">
+  <div class="logo1">
+    <img src="https://remisiones.munimixco.gob.gt/assets/img/munimixco-logo.png" alt="">
+  </div>
+
+  <div class="form1">
+    <br><br>
+    <ion-item lines='none'>
+      <ion-input [(ngModel)]="reporte.zona" placeholder="zona"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>fecha problema</ion-label>
+      <ion-datetime [(ngModel)]="reporte.fechaProblema" placeholder="fecha reporte" displayFormat="DD/MMM/YYYY" value="null" placeholder="seleccionar fecha"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Hora problema hh:mm</ion-label>
+      <ion-datetime [(ngModel)]="reporte.horaProblema" displayFormat="h:mm A" minuteValues="0,15,30,45"></ion-datetime>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-textarea [(ngModel)]="reporte.descripcion" placeholder="Redacte el problema..."></ion-textarea>
+    </ion-item>
+
+    <input type="file" multiple="multiple" (change)="ObtenerImagenes($event)" accept="image/*" #files style="visibility: hidden;">
+
+    <ion-button class="add-img" (click)="files.click()"><ion-icon name="images"></ion-icon> agregar imagenes</ion-button>
+
+    <br>
+    <ion-button expand="block" (click)="reportar()">registrar</ion-button>
+    <br>
+    <br>
+    <ion-row>
+      <ion-col sizeLg="3" sizeMd="3" sizeXs="6" *ngFor='let item of urlImages'>
+        <ion-card routerLink= "/nuevo-reporte/1" >
+            <img [src]="item" alt="">
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <div *ngIf="flag_campo">
+    <ion-text fill="clear" style="color: red;">
+      es obligatorio llenar todos los campos de texto
+    </ion-text>
+  </div>
+
+  <div *ngIf="flag_campo_2">
+    <ion-text fill="clear" style="color: green;">
+      Se Agrego su reporte con exito
+    </ion-text>
+  </div>
+
+</ion-content>

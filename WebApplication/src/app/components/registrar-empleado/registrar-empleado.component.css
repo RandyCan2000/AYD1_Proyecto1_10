@@ -1,0 +1,71 @@
+mat-card-title{
+    text-align: center;
+}
+mat-card-subtitle{
+    text-align: center;
+}
+mat-card-content{
+}
+section {
+    display: table;
+  }
+  
+  .example-label {
+    display: table-cell;
+    font-size: 14px;
+    margin-left: 8px;
+    min-width: 120px;
+  }
+  
+  .example-button-row {
+    display: table-cell;
+    width: 490px;
+  }
+  
+  .example-button-row .mat-button-base {
+    margin: 8px 8px 8px 0;
+  }
+  
+  .example-flex-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .example-button-container {
+    display: flex;
+    justify-content: center;
+    width: 120px;
+  }
+mat-card-actions{
+    text-align: center;
+}
+mat-card-footer{
+    text-align: center;
+}
+mat-radio-group{
+    display: flex;
+    justify-content: center;
+}
+mat-radio-button{
+    padding-left: 5px;
+}
+.container{
+    max-width: 500px;
+    min-width: 250px;
+    width: 100%;
+    margin-top: 25px;
+}
+.form{
+    max-width: 100%;
+}
+.full{
+    width: 100%;
+}
+.left{
+    width: 45%;
+}
+.right{
+    margin-left: 10%;
+    width: 45%;
+}

@@ -1,0 +1,7 @@
+{
+  "name": "Ayd1P1",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
