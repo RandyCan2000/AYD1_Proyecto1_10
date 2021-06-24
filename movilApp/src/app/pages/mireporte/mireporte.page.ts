@@ -11,6 +11,7 @@ export class MireportePage implements OnInit {
   notificaion:any = null;
   user:string = "";
   tipo_reporte = "";
+  estado_reporte = "";
   mireporte:any = null;
 
   constructor(private router:Router, private activeRoute: ActivatedRoute, private services:UsuarioService) { }
@@ -32,8 +33,27 @@ export class MireportePage implements OnInit {
         this.mireporte = res[0];
         if(res[0].idtipoproblema == 1){
           this.tipo_reporte = "baches en las calles"
-        }else{
+        }else if(res[0].idtipoproblema == 2){
           this.tipo_reporte = "actos de delincuencia"
+        }
+        else if(res[0].idtipoproblema == 3){
+          this.tipo_reporte = "fallos de agua"
+        }
+        else if(res[0].idtipoproblema == 4){
+          this.tipo_reporte = "problemas de luz"
+        }
+        else{
+          this.tipo_reporte = "otros problemas"
+        }
+
+        if(res[0].estado == 0){
+          this.estado_reporte = "sin revisar"
+        }else if(res[0].estado == 1){
+          this.estado_reporte = "revisado"
+        }else if(res[0].estado == 2){
+          this.estado_reporte = "notificado"
+        }else{
+          this.estado_reporte = "solucionado"
         }
          
         //digamos que se obtiene el id del reporte id:1

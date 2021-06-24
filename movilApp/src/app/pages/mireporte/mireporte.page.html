@@ -15,9 +15,14 @@
 
   <ion-card>
     <ion-item  class="ion-activated ion-padding ion-text-center" lines="none">
-      <ion-label >{{tipo_reporte}} </ion-label>
+      <ion-label >estado: {{estado_reporte}} </ion-label>
     </ion-item>
   
+    <ion-item >
+      <ion-icon name="stop-outline" slot="start"></ion-icon>
+      <ion-label>tipo reporte: {{tipo_reporte}} </ion-label>
+    </ion-item>
+
     <ion-item >
       <ion-icon name="stop-outline" slot="start"></ion-icon>
       <ion-label>zona: {{mireporte.zona}} </ion-label>

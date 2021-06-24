@@ -30,6 +30,36 @@
       </ion-card>
     </ion-col>
 
+    <ion-col sizeLg="3" sizeMd="3" sizeXs="6">
+      <ion-card routerLink= "/nuevo-reporte/3" >
+          <img src="https://pbs.twimg.com/media/CeJ1YZ_XIAEY3e9.jpg:large" alt="">
+        <ion-card-header>
+          <ion-card-subtitle>Crear</ion-card-subtitle>
+          <ion-card-title>problemas de agua</ion-card-title>
+        </ion-card-header>
+      </ion-card>
+    </ion-col>
+
+    <ion-col sizeLg="3" sizeMd="3" sizeXs="6">
+      <ion-card routerLink= "/nuevo-reporte/4" >
+          <img src="https://previews.123rf.com/images/lineartestpilot/lineartestpilot1410/lineartestpilot141003170/32527695-luz-el%C3%A9ctrica-bombilla-s%C3%ADmbolo-de-dibujos-animados.jpg" alt="">
+        <ion-card-header>
+          <ion-card-subtitle>Crear</ion-card-subtitle>
+          <ion-card-title>fallos de luz</ion-card-title>
+        </ion-card-header>
+      </ion-card>
+    </ion-col>
+
+    <ion-col sizeLg="3" sizeMd="3" sizeXs="6">
+      <ion-card routerLink= "/nuevo-reporte/5" >
+          <img src="https://thumbs.dreamstime.com/b/foto-conceptual-sobre-el-formulario-b-modelo-de-declaraci%C3%B3n-conformidad-vcp-cronograma-otros-fallos-no-amender-y-falta-adopci%C3%B3n-203485048.jpg" alt="">
+        <ion-card-header>
+          <ion-card-subtitle>Crear</ion-card-subtitle>
+          <ion-card-title>Otros</ion-card-title>
+        </ion-card-header>
+      </ion-card>
+    </ion-col>
+
   </ion-row>
 
   <br>
@@ -43,6 +73,9 @@
       <ion-item routerLink ="/mireporte/{{r.idreporte}}" detail>
         <ion-label *ngIf = "r.idtipoproblema == 1" ><ion-icon name="car-sport"></ion-icon>baches en la {{r.zona}} </ion-label>
         <ion-label *ngIf = "r.idtipoproblema == 2" ><ion-icon name="footsteps"></ion-icon>delincuencia en la {{r.zona}} </ion-label>
+        <ion-label *ngIf = "r.idtipoproblema == 3" ><ion-icon name="footsteps"></ion-icon>fallos de agua, {{r.zona}} </ion-label>
+        <ion-label *ngIf = "r.idtipoproblema == 4" ><ion-icon name="footsteps"></ion-icon>problemas de luz, {{r.zona}} </ion-label>
+        <ion-label *ngIf = "r.idtipoproblema == 5" ><ion-icon name="footsteps"></ion-icon>otros problemas, {{r.zona}} </ion-label>
       </ion-item>
     </div>
 
