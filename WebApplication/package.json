@@ -23,6 +23,7 @@
     "@angular/router": "~11.2.10",
     "@sweetalert2/theme-borderless": "^5.0.0",
     "@sweetalert2/themes": "^5.0.0",
+    "angular-cli-ghpages": "^1.0.0-rc.2",
     "aws-sdk": "^2.932.0",
     "express": "^4.17.1",
     "ngx-childprocess": "0.0.6",

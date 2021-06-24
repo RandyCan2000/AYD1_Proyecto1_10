@@ -39,7 +39,7 @@ export class ServicesService {
   }
 
   public GetImageOfReport(id:string):Promise<string[]>{
-    return this.http.get<string[]>(`${this.API}/imagenReporte/${id}`).toPromise()
+    return this.http.get<string[]>(`${this.API}/imagenReporteId/${id}`).toPromise()
   }
 
   public Verification(){
