@@ -1,0 +1,23 @@
+
+.logo{
+    margin-top: 10%;
+    img{
+        height: 50px;
+    }
+}
+
+.form{
+    margin-top: -20px;
+    ion-item{
+        border-radius: 5px;
+        border-color: yellowgreen;
+        border-width: 2px;
+        border-style: solid;
+        margin-bottom: 10px;
+    }
+}
+
+
+ion-button{
+    text-transform: none;
+}

@@ -31,7 +31,7 @@ export class ServicesService {
   }
 
   public GetOneReport(id:string):Promise<Reporte[]>{
-    return this.http.get<Reporte[]>(`${this.API}/reporte/${id}`).toPromise()
+    return this.http.get<Reporte[]>(`${this.API}/reportePorId/${id}`).toPromise()
   }
 
   public GetOneUserVecino(id:string):Promise<any[]>{

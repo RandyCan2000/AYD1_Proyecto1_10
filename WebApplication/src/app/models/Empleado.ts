@@ -6,6 +6,7 @@ export class Empleado{
 	correo : string;
 	edad : number;
 	fechanacimiento : string;
+    fechaNacimiento : string;
 	usuario : string;
 	password : string;
 	tipo : string;
@@ -21,5 +22,7 @@ export class Empleado{
         this.usuario = empleado? empleado.usuario : "";
         this.password = empleado? empleado.password : "";
         this.tipo = empleado? empleado.tipo : "";
+
+        this.fechaNacimiento = empleado? empleado.fechaNacimiento : "";
     }
 }
