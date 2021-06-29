@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
       window.location.reload()
       this.route.navigate(['perfil'])
     }
-    this.Service.prueba().then(
+    this.Service.prueba().subscribe(
       result=>{
         console.log(result);
       }
