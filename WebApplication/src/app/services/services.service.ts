@@ -9,13 +9,13 @@ import { TipoProblema } from '../models/TipoProblema';
 @Injectable()
 export class ServicesService {
 
-  private API:string = "http://server-node:3000";
+  private API:string = "server-node";
 
 
   constructor(private http:HttpClient,private route:Router) { }
 
-  public prueba():Promise<any>{
-    return this.http.get<any>(`${this.API}/usuarios`).toPromise()
+  public prueba():Observable<any>{
+    return this.http.get<any>(`${this.API}/usuarios`)
   }
 
   public getAllEmpleados():Promise<Empleado>{
