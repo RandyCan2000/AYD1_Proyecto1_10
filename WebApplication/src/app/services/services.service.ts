@@ -13,6 +13,10 @@ export class ServicesService {
 
   constructor(private http:HttpClient,private route:Router) { }
 
+  public prueba():Promise<any>{
+    return this.http.get<any>(`${this.API}/usuarios`).toPromise()
+  }
+
   public getAllEmpleados():Promise<Empleado>{
     return this.http.get<Empleado>(`${this.API}/empleados`).toPromise()
   }

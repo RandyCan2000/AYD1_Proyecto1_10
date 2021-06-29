@@ -29,6 +29,11 @@ export class LoginComponent implements OnInit {
       window.location.reload()
       this.route.navigate(['perfil'])
     }
+    this.Service.prueba().then(
+      result=>{
+        console.log(result);
+      }
+    )
   }
 
   ngOnInit(): void {
