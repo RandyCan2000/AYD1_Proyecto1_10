@@ -9,7 +9,7 @@ import { TipoProblema } from '../models/TipoProblema';
 @Injectable()
 export class ServicesService {
 
-  private API:string = "https://proyecto1-ayd1.herokuapp.com";
+  private API:string = "http://server-node:3000";
 
   constructor(private http:HttpClient,private route:Router) { }
 
