@@ -9,7 +9,8 @@ import { TipoProblema } from '../models/TipoProblema';
 @Injectable()
 export class ServicesService {
 
-  private API:string = "http://server-node:3000";
+  private API:string = "server-node:3000";
+  
 
   constructor(private http:HttpClient,private route:Router) { }
 
